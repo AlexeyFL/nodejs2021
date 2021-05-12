@@ -3,29 +3,45 @@ const router = require('express').Router();
 const User = require('./user.model');
 const usersService = require('./user.service');
 
+// get all users
 router.route('/').get(async (req, res) => {
   const users = await usersService.getAllUsers();
-  // map user fields to exclude secret fields like "password"
-  // res.json(users);
   res.json(users.map(User.toResponse));
 });
 
-router.route('/').post(async (req, res) => {
-  // if (!req.body) {
-  //   return res.status(400);
-  // }
-  // get params
-  // console.log('req.body', req.query.name);
+// get user by id
+router.route('/:id').get(async (req, res) => {
+  const userId = req.params['id'];
 
+  const user = await usersService.getUser(userId);
+
+  res.status(user ? 200 : 404).json(User.toResponse(user));
+});
+
+// update user by id
+router.route('/:id').put(async (req, res) => {
+  const { body } = req;
+  const userId = req.params['id'];
+
+  const newUserBody = await usersService.updateUser({
+    ...body,
+    id: userId,
+  });
+
+  res.json(User.toResponse(newUserBody));
+});
+
+// create new user
+router.route('/').post(async (req, res) => {
   const newUser = new User({
     id: uuid(),
-    name: 'name',
-    login: 'login',
-    password: 'pass',
+    name: req.query.name,
+    login: req.query.login,
+    password: req.query.password,
   });
 
   usersService.addUser(newUser);
-  res.json(newUser.getUser());
+  res.status(201).json(newUser.getUser());
 });
 
 module.exports = router;

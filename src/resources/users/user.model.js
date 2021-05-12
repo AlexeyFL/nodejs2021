@@ -3,8 +3,8 @@ const uuid = require('uuid').v4;
 class User {
   constructor({
     id = uuid(),
-    name = 'USER',
-    login = 'user',
+    name = 'TEST_USER',
+    login = 'test_user',
     password = 'P@55w0rd',
   } = {}) {
     this.id = id;
@@ -15,6 +15,7 @@ class User {
 
   getUser() {
     return {
+      id: this.id,
       name: this.name,
       login: this.login,
     };

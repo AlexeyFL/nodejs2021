@@ -22,4 +22,25 @@ const addUser = async (userData) => {
   return userData;
 };
 
-module.exports = { getAllUsers, addUser };
+const getUser = async (id) => {
+  const userList = await getAllUsers();
+
+  return userList.find((user) => user.id === id);
+};
+
+const updateUser = async (user) => {
+  const userList = await getAllUsers();
+
+  const idx = userList.findIndex((listUser) => listUser.id === user.id);
+
+  userList[idx] = user;
+  console.log(userList[idx]);
+
+  const stringifiedUserList = JSON.stringify(userList);
+
+  await promises.writeFile(filePath, stringifiedUserList, 'utf8');
+
+  return user;
+};
+
+module.exports = { getAllUsers, addUser, getUser, updateUser };
