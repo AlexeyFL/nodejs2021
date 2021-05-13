@@ -34,7 +34,6 @@ const updateUser = async (user) => {
   const idx = userList.findIndex((listUser) => listUser.id === user.id);
 
   userList[idx] = user;
-  console.log(userList[idx]);
 
   const stringifiedUserList = JSON.stringify(userList);
 
@@ -43,4 +42,16 @@ const updateUser = async (user) => {
   return user;
 };
 
-module.exports = { getAllUsers, addUser, getUser, updateUser };
+const deleteUser = async (id) => {
+  const userList = await getAllUsers();
+
+  const idx = userList.findIndex((listUser) => listUser.id === id);
+
+  userList.splice(idx, 1);
+
+  const stringifiedUserList = JSON.stringify(userList);
+
+  await promises.writeFile(filePath, stringifiedUserList, 'utf8');
+};
+
+module.exports = { getAllUsers, addUser, getUser, updateUser, deleteUser };
