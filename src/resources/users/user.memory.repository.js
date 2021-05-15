@@ -1,23 +1,11 @@
-const { promises } = require('fs');
+const users = [];
 
-const fileName = 'users.json';
-
-const filePath = `src/${fileName}`;
-
-const getAllUsers = async () => {
-  const content = await promises.readFile(filePath, 'utf8');
-  const users = JSON.parse(content);
-  return users;
-};
+const getAllUsers = async () => users;
 
 const addUser = async (userData) => {
   const userList = await getAllUsers();
 
   userList.push(userData);
-
-  const stringifiedUserList = JSON.stringify(userList);
-
-  await promises.writeFile(filePath, stringifiedUserList, 'utf8');
 
   return userData;
 };
@@ -35,10 +23,6 @@ const updateUser = async (user) => {
 
   userList[idx] = user;
 
-  const stringifiedUserList = JSON.stringify(userList);
-
-  await promises.writeFile(filePath, stringifiedUserList, 'utf8');
-
   return user;
 };
 
@@ -49,9 +33,6 @@ const deleteUser = async (id) => {
 
   userList.splice(idx, 1);
 
-  const stringifiedUserList = JSON.stringify(userList);
-
-  await promises.writeFile(filePath, stringifiedUserList, 'utf8');
 };
 
 module.exports = { getAllUsers, addUser, getUser, updateUser, deleteUser };
