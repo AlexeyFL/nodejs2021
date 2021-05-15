@@ -1,4 +1,5 @@
-const router = require('express').Router();
+const uuid = require('uuid').v4;
+const router = require('express').Router({mergeParams: true});
 const Task = require('./tasks.model');
 const tasksService = require('./tasks.service');
 
@@ -35,11 +36,12 @@ router.route('/:id').put(async (req, res) => {
 // create new Task
 router.route('/').post(async (req, res) => {
   const newTask = new Task({
+    id: uuid(),
     title: req.query.title,
     order: req.query.order,
     description: req.query.description,
     userId: req.query.userId,
-    taskId: req.query.taskId,
+    boardId: req.params.boardId,
     columnId: req.query.columnId,
   });
 

@@ -1,12 +1,16 @@
+const uuid = require('uuid').v4;
+
 class Task {
   constructor({
+    id = uuid(),
     title = 'Autotest task',
     order = 0,
     description = 'Lorem ipsum',
     userId = null,
     boardId = null,
-    columnId = null
+    columnId = null,
   } = {}) {
+    this.id = id
     this.title = title;
     this.order = order;
     this.description = description;
@@ -17,6 +21,7 @@ class Task {
 
   getTask() {
     return {
+      id: this.id,
       title: this.title,
       order: this.order,
       description: this.description,
@@ -27,8 +32,8 @@ class Task {
   }
 
   static toResponse(task) {
-    const {  title, order, description, userId, boardId, columnId } = task;
-    return {  title, order, description, userId, boardId, columnId };
+    const { id, title, order, description, userId, boardId, columnId } = task;
+    return { id, title, order, description, userId, boardId, columnId };
   }
 }
 
