@@ -11,7 +11,7 @@ router.route('/').get(async (req, res) => {
 
 // get board by id
 router.route('/:id').get(async (req, res) => {
-  const boardId = req.params['id'];
+  const boardId = req.params.id;
   const board = await boardsService.getBoard(boardId);
   if (board) {
     res.status(200).json(Board.toResponse(board));
@@ -23,7 +23,7 @@ router.route('/:id').get(async (req, res) => {
 // update user by id
 router.route('/:id').put(async (req, res) => {
   const { body } = req;
-  const boardId = req.params['id'];
+  const boardId = req.params.id;
 
   const newBoardBody = await boardsService.updateBoard({
     ...body,
@@ -47,7 +47,7 @@ router.route('/').post(async (req, res) => {
 
 // delete board
 router.route('/:id').delete(async (req, res) => {
-  const boardId = req.params['id'];
+  const boardId = req.params.id;
   await boardsService.deleteBoard(boardId);
 
   res.status(204).json(null);

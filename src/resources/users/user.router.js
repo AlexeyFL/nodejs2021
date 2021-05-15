@@ -11,7 +11,7 @@ router.route('/').get(async (req, res) => {
 
 // get user by id
 router.route('/:id').get(async (req, res) => {
-  const userId = req.params['id'];
+  const userId = req.params.id;
 
   const user = await usersService.getUser(userId);
 
@@ -21,7 +21,7 @@ router.route('/:id').get(async (req, res) => {
 // update user by id
 router.route('/:id').put(async (req, res) => {
   const { body } = req;
-  const userId = req.params['id'];
+  const userId = req.params.id;
 
   const newUserBody = await usersService.updateUser({
     ...body,
@@ -46,7 +46,7 @@ router.route('/').post(async (req, res) => {
 
 // delete user
 router.route('/:id').delete(async (req, res) => {
-  const userId = req.params['id'];
+  const userId = req.params.id;
   await usersService.deleteUser(userId);
 
   res.status(204).json(null);

@@ -10,7 +10,7 @@ router.route('/').get(async (req, res) => {
 
 // get task by id
 router.route('/:id').get(async (req, res) => {
-  const taskId = req.params['id'];
+  const taskId = req.params.id;
   const task = await tasksService.getTask(taskId);
   if (task) {
     res.status(200).json(Task.toResponse(task));
@@ -22,7 +22,7 @@ router.route('/:id').get(async (req, res) => {
 // update user by id
 router.route('/:id').put(async (req, res) => {
   const { body } = req;
-  const taskId = req.params['id'];
+  const taskId = req.params.id;
 
   const newTaskBody = await tasksService.updateTask({
     ...body,
@@ -49,7 +49,7 @@ router.route('/').post(async (req, res) => {
 
 // delete task
 router.route('/:id').delete(async (req, res) => {
-  const taskId = req.params['id'];
+  const taskId = req.params.id;
   await tasksService.deleteTask(taskId);
 
   res.status(204).json(null);
