@@ -1,5 +1,5 @@
 const uuid = require('uuid').v4;
-const router = require('express').Router({mergeParams: true});
+const router = require('express').Router({ mergeParams: true });
 const Task = require('./tasks.model');
 const tasksService = require('./tasks.service');
 
@@ -49,11 +49,35 @@ router.route('/').post(async (req, res) => {
   res.status(201).json(newTask.getTask());
 });
 
+// const middleware = {
+//   deleteTask: async (req, res, next) => {
+//     const taskId = req.params.id;
+//     console.log(taskId)
+//     await tasksService.deleteTask(taskId);
+//     next();
+//     // res.status(204).json(null);
+//   },
+//   deleteBoardTask: async (req, res, next) => {
+//     const { boardId } = req.params;
+//     console.log(boardId)
+//     await tasksService.deleteBoardTask(boardId);
+//     next();
+//     // res.status(204).json(null);
+//   },
+// };
+
+// router.route('/:id').delete([
+//   middleware.deleteTask,
+//   middleware.deleteBoardTask,
+//   (req, res) => {
+//     res.status(204).json(null);
+//   },
+// ]);
+
 // delete task
 router.route('/:id').delete(async (req, res) => {
   const taskId = req.params.id;
   await tasksService.deleteTask(taskId);
-
   res.status(204).json(null);
 });
 

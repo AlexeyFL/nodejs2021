@@ -1,6 +1,6 @@
 const tasks = [];
 
-const getAllTasks = async () => tasks;
+const getAllTasks = () => tasks;
 
 const addTask = async (taskData) => {
   const taskList = await getAllTasks();
@@ -34,7 +34,18 @@ const deleteTask = async (id) => {
   const idx = taskList.findIndex((listTask) => listTask.id.toString() === id);
 
   taskList.splice(idx, 1);
-
 };
 
-module.exports = { getAllTasks, addTask, getTask, updateTask, deleteTask };
+const deleteBoardTask = async (boardId) => {
+  const taskList = await getAllTasks();
+  return taskList.filter((task) => task.boardId.toString() !== boardId);
+};
+
+module.exports = {
+  getAllTasks,
+  addTask,
+  getTask,
+  updateTask,
+  deleteTask,
+  deleteBoardTask,
+};

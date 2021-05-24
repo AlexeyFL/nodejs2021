@@ -1,3 +1,5 @@
+const { deleteBoardTask } = require('../tasks/tasks.memory.repository');
+
 const boards = [];
 
 const getAllBoards = async () => boards;
@@ -35,6 +37,7 @@ const deleteBoard = async (id) => {
     (listBoard) => listBoard.id.toString() === id
   );
 
+  deleteBoardTask(id);
   boardList.splice(idx, 1);
 };
 
