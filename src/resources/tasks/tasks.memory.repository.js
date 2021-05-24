@@ -1,7 +1,21 @@
+// @ts-check
+
+/**
+ * Array of tasks
+ * @type {Array<Object>}
+ */
 const tasks = [];
-
+/**
+ * Returns all tasks.
+ * @param {Object[]} - json.
+ * @returns {Object}
+ */
 const getAllTasks = () => tasks;
-
+/**
+ * Add task to array.
+ * @param {Object[]} - json.
+ * @returns {Object}
+ */
 const addTask = async (taskData) => {
   const taskList = await getAllTasks();
 
