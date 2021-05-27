@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: boards/board.memory.repository.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,85 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: boards/board.memory.repository.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { deleteBoardTask } = require('../tasks/tasks.memory.repository');
 
+const boards = [];
+/**
+ * Return all boards.
+ * @returns {Array}
+ */
+const getAllBoards = async () => boards;
+/**
+ * Add board
+ * @param {Object} - json.
+ * @returns {Object} - json.
+ */
+const addBoard = async (boardData) => {
+  const boardList = await getAllBoards();
 
-    <h3> </h3>
+  boardList.push(boardData);
 
+  return boardData;
+};
+/**
+ * Get board by id.
+ * @param {string} - json.
+ * @returns {Object} - json.
+ */
+const getBoard = async (id) => {
+  const boardList = await getAllBoards();
 
+  return boardList.find((board) => board.id.toString() === id);
+};
+/**
+ * Update board.
+ * @param {Object} - json.
+ * @returns {Object} - json.
+ */
+const updateBoard = async (board) => {
+  const boardList = await getAllBoards();
 
+  const idx = boardList.findIndex(
+    (listBoard) => listBoard.id.toString() === board.id
+  );
 
+  boardList[idx] = board;
 
+  return board;
+};
+/**
+ * Delete board.
+ * @param {string}
+ * @returns {Object} - json.
+ */
+const deleteBoard = async (id) => {
+  const boardList = await getAllBoards();
 
+  const idx = boardList.findIndex(
+    (listBoard) => listBoard.id.toString() === id
+  );
+  /**
+   * Delete board task.
+   * @param {string}
+   * @returns {Object} - json.
+   */
+  deleteBoardTask(id);
+  boardList.splice(idx, 1);
+};
 
-
-
-
-    
-
-
-
-
-
+module.exports = { getAllBoards, addBoard, getBoard, updateBoard, deleteBoard };
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -23,13 +23,21 @@ const addTask = async (taskData) => {
 
   return taskData;
 };
-
+/**
+ * Get task by id.
+ * @param {string} - id.
+ * @returns {Object} - json.
+ */
 const getTask = async (id) => {
   const taskList = await getAllTasks();
 
   return taskList.find((task) => task.id.toString() === id);
 };
-
+/**
+ * Update task by id.
+ * @param {Object} - json.
+ * @returns {Object} - json.
+ */
 const updateTask = async (task) => {
   const taskList = await getAllTasks();
 
@@ -41,7 +49,11 @@ const updateTask = async (task) => {
 
   return task;
 };
-
+/**
+ * Delete task by id.
+ * @param {string} - json.
+ * @returns {Object} - json.
+ */
 const deleteTask = async (id) => {
   const taskList = await getAllTasks();
 
@@ -49,7 +61,11 @@ const deleteTask = async (id) => {
 
   taskList.splice(idx, 1);
 };
-
+/**
+ * Delete board by id.
+ * @param {string} - json.
+ * @returns {Object} - json.
+ */
 const deleteBoardTask = async (boardId) => {
   const taskList = await getAllTasks();
   return taskList.filter((task) => task.boardId.toString() !== boardId);

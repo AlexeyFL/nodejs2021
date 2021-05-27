@@ -1,5 +1,8 @@
 const uuid = require('uuid').v4;
-
+/**
+ * Create a new Task.
+ * @class
+ */
 class Task {
   constructor({
     id = uuid(),

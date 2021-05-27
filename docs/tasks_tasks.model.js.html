@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: tasks/tasks.model.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,61 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: tasks/tasks.model.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const uuid = require('uuid').v4;
+/**
+ * Create a new Task.
+ * @class
+ */
+class Task {
+  constructor({
+    id = uuid(),
+    title = 'Autotest task',
+    order = 0,
+    description = 'Lorem ipsum',
+    userId = null,
+    boardId = null,
+    columnId = null,
+  } = {}) {
+    this.id = id
+    this.title = title;
+    this.order = order;
+    this.description = description;
+    this.userId = userId;
+    this.boardId = boardId;
+    this.columnId = columnId;
+  }
 
+  getTask() {
+    return {
+      id: this.id,
+      title: this.title,
+      order: this.order,
+      description: this.description,
+      userId: this.userId,
+      boardId: this.boardId,
+      columnId: this.columnId,
+    };
+  }
 
-    <h3> </h3>
+  static toResponse(task) {
+    const { id, title, order, description, userId, boardId, columnId } = task;
+    return { id, title, order, description, userId, boardId, columnId };
+  }
+}
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = Task;
+</code></pre>
+        </article>
+    </section>
 
 
 
