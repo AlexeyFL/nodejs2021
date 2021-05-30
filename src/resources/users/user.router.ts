@@ -1,6 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import { Router, Request, Response } from 'express';
 
+import { mapUser, userType } from '../../types';
 
 import User from './user.model';
 
@@ -10,13 +11,13 @@ const router = Router();
 
 // get all users
 router.route('/').get(async (res: Response) => {
-  const users  = await usersService.getAllUsers();
-  res.status(users ? 200 : 404).json(users.map(User.toResponse));
+  const users = await usersService.getAllUsers();
+  res.status(users ? 200 : 404).json(users.map(<mapUser>User.toResponse));
 });
 
 // get user by id
 router.route('/:id').get(async (req: Request, res: Response) => {
-  const userId = req.params['id'];  
+  const userId = req.params['id'];
 
   const user = await usersService.getUser(userId);
 
@@ -28,7 +29,7 @@ router.route('/:id').put(async (req: Request, res: Response) => {
   const { body } = req;
   const userId = req.params['id'];
 
-  const newUserBody = await usersService.updateUser({
+  const newUserBody:userType = await usersService.updateUser({
     ...body,
     id: userId,
   });

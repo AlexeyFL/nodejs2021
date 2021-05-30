@@ -3,13 +3,13 @@ import {userType ,iUser} from '../../types';
 
 
 class User {
-  id: string | number;
+  id: string | number | undefined;
 
-  name: string;
+  name: string | number | undefined;
 
-  login: string;
+  login: string | number | undefined;
 
-  password: string;
+  password: string | number | undefined;
 
   constructor({
     id = uuid(),
@@ -28,13 +28,13 @@ class User {
       id: this.id,
       name: this.name,
       login: this.login,
-    };
+    } as userType;
   }
 
-  static toResponse(user: {
-    id: string;
-    name: string;
-    login: string;
+  static toResponse( user: {
+    id?: string | number | undefined;
+    name: string | number | undefined;
+    login: string | number | undefined;
   }): userType {
     const { id, name, login } = user;
     return { id, name, login };

@@ -12,7 +12,7 @@ const addUser = async (userData:userType):Promise<userType> => {
   return userData;
 };
 
-const getUser = async (id:string):Promise<userType> => {
+const getUser = async (id:string):Promise<userType | undefined> => {
   const userList = await getAllUsers();
 
   return userList.find((user:userType) => user.id === id);
