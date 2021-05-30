@@ -38,4 +38,4 @@ const deleteBoard = async (id) => {
   boardList.splice(idx, 1);
 };
 
-module.exports = { getAllBoards, addBoard, getBoard, updateBoard, deleteBoard };
+export { getAllBoards, addBoard, getBoard, updateBoard, deleteBoard };

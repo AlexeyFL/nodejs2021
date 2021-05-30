@@ -1,7 +1,11 @@
-const uuid = require('uuid').v4;
-const router = require('express').Router();
-const Board = require('./board.model');
-const boardsService = require('./board.service');
+import { v4 as uuid } from 'uuid';
+import { Router } from 'express';
+
+import Board from './board.model';
+
+import * as boardsService from './board.service';
+
+const router = Router();
 
 // get all boards
 router.route('/').get(async (req, res) => {
@@ -53,4 +57,4 @@ router.route('/:id').delete(async (req, res) => {
   res.status(204).json(null);
 });
 
-module.exports = router;
+export default router;

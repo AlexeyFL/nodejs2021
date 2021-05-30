@@ -37,4 +37,4 @@ const deleteTask = async (id) => {
 
 };
 
-module.exports = { getAllTasks, addTask, getTask, updateTask, deleteTask };
+export { getAllTasks, addTask, getTask, updateTask, deleteTask };

@@ -1,7 +1,11 @@
-const uuid = require('uuid').v4;
-const router = require('express').Router({mergeParams: true});
-const Task = require('./tasks.model');
-const tasksService = require('./tasks.service');
+import { v4 as uuid } from 'uuid';
+import { Router } from 'express';
+
+import Task from './tasks.model';
+
+import * as tasksService from './tasks.service';
+
+const router = Router({ mergeParams: true });
 
 // get all tasks
 router.route('/').get(async (req, res) => {
@@ -57,4 +61,4 @@ router.route('/:id').delete(async (req, res) => {
   res.status(204).json(null);
 });
 
-module.exports = router;
+export default router;
