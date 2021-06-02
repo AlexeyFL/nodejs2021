@@ -1,5 +1,4 @@
-import { v4 as uuid } from 'uuid';
-import { Router } from 'express';
+import { Router, Response, Request } from 'express';
 
 import Task from './tasks.model';
 
@@ -8,7 +7,7 @@ import * as tasksService from './tasks.service';
 const router = Router({ mergeParams: true });
 
 // get all tasks
-router.route('/').get(async (req, res) => {
+router.route('/').get(async (_req: Request, res: Response) => {
   const tasks = await tasksService.getAllTasks();
   res.json(tasks.map(Task.toResponse)).status(200);
 });
@@ -24,39 +23,32 @@ router.route('/:id').get(async (req, res) => {
   }
 });
 
-// update user by id
-router.route('/:id').put(async (req, res) => {
+// update task by id
+router.route('/:id').put(async (req:Request, res:Response) => {
   const { body } = req;
-  const taskId = req.params.id;
+  const taskId = req.params['id'];
 
   const newTaskBody = await tasksService.updateTask({
-    ...body,
     id: taskId,
+    ...body,
   });
 
-  res.json(Task.toResponse(newTaskBody));
+  res.json(newTaskBody);
 });
 
 // create new Task
-router.route('/').post(async (req, res) => {
-  const newTask = new Task({
-    id: uuid(),
-    title: req.query.title,
-    order: req.query.order,
-    description: req.query.description,
-    userId: req.query.userId,
-    boardId: req.params.boardId,
-    columnId: req.query.columnId,
-  });
+router.route('/').post(async (req:Request, res:Response) => {
+  const {boardId} = req.params
+  const newTask = new Task({ ...req.body, boardId: boardId! });
 
   tasksService.addTask(newTask);
-  res.status(201).json(newTask.getTask());
+  res.status(201).json(newTask);
 });
 
 // delete task
-router.route('/:id').delete(async (req, res) => {
-  const taskId = req.params.id;
-  await tasksService.deleteTask(taskId);
+router.route('/:id').delete(async (req:Request, res:Response) => {
+  const taskId = req.params['id'];
+  await tasksService.deleteTask(taskId!);
 
   res.status(204).json(null);
 });

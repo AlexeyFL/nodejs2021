@@ -1,41 +1,11 @@
-const boards = [];
+import Board from './board.model';
+import * as database from '../../common/dataBase';
 
-const getAllBoards = async () => boards;
+const getBoards = async (): Promise<Board[]> => database.getAllBoards();
+const add = async (userData: Board): Promise<Board> => database.addBoard(userData);
+const getOneBoard = async (id: string): Promise<Board | null> =>
+  database.getBoard(id);
+const update = async (user: Board): Promise<Board> => database.updateBoard(user);
+const remove = async (id: string): Promise<void> => database.deleteBoard(id);
 
-const addBoard = async (boardData) => {
-  const boardList = await getAllBoards();
-
-  boardList.push(boardData);
-
-  return boardData;
-};
-
-const getBoard = async (id) => {
-  const boardList = await getAllBoards();
-
-  return boardList.find((board) => board.id.toString() === id);
-};
-
-const updateBoard = async (board) => {
-  const boardList = await getAllBoards();
-
-  const idx = boardList.findIndex(
-    (listBoard) => listBoard.id.toString() === board.id
-  );
-
-  boardList[idx] = board;
-
-  return board;
-};
-
-const deleteBoard = async (id) => {
-  const boardList = await getAllBoards();
-
-  const idx = boardList.findIndex(
-    (listBoard) => listBoard.id.toString() === id
-  );
-
-  boardList.splice(idx, 1);
-};
-
-export { getAllBoards, addBoard, getBoard, updateBoard, deleteBoard };
+export { getBoards, add, getOneBoard, update, remove };

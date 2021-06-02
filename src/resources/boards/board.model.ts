@@ -1,28 +1,33 @@
 import { v4 as uuid } from 'uuid';
 
+type Column = {
+  id: string | null;
+  title: string;
+  order: number;
+};
 class Board {
-  constructor({
-    id = uuid(),
-    title = "Autotest board",
-    columns = [
-      { title: "Backlog", order: 1 },
-      { title: "Sprint", order: 2 },
-    ],
-  } = {}) {
+  id?: string;
+
+  title?: string;
+
+  columns?: Column[];
+
+  constructor(
+    {
+      id = uuid(),
+      title = 'Autotest board',
+      columns = [
+        {id: null, title: 'Backlog', order: 1 } as Column,
+        {id: null, title: 'Sprint', order: 2 } as Column,
+      ],
+    } = {} as Board
+  ) {
     this.id = id;
     this.title = title;
     this.columns = columns;
   }
 
-  getBoard() {
-    return {
-      id: this.id,
-      title: this.title,
-      columns: this.columns,
-    };
-  }
-
-  static toResponse(board) {
+  static toResponse(board: Board):Board {
     const { id, title, columns } = board;
     return { id, title, columns };
   }

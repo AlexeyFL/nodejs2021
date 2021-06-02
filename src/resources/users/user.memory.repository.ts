@@ -1,40 +1,12 @@
-import {userType} from '../../types'
+import * as database from '../../common/dataBase';
+import User from './user.model';
 
-const users:userType[] = [];
+const getUsers = async (): Promise<User[]> => database.getAllUsers();
+const add = async (userData: User): Promise<User> =>
+  database.addUser(userData);
+const getOneUser = async (id: string): Promise<User | null> => database.getUser(id);
+const update = async (user: User): Promise<User> => database.updateUser(user);
+const remove = async (id: string): Promise<void> => database.deleteUser(id);
 
-const getAllUsers = ():userType[] => users;
 
-const addUser = async (userData:userType):Promise<userType> => {
-  const userList = await getAllUsers();
-
-  userList.push(userData);
-
-  return userData;
-};
-
-const getUser = async (id:string):Promise<userType | undefined> => {
-  const userList = await getAllUsers();
-
-  return userList.find((user:userType) => user.id === id);
-};
-
-const updateUser = async (user:userType):Promise<userType> => {
-  const userList = await getAllUsers();
-
-  const idx:number | number = userList.findIndex((listUser) => listUser.id === user.id);
-
-  userList[idx] = user;
-
-  return user;
-};
-
-const deleteUser = async (id:string):Promise<void> => {
-  const userList = await getAllUsers();
-
-  const idx = userList.findIndex((listUser) => listUser.id === id);
-
-  userList.splice(idx, 1);
-
-};
-
-export { getAllUsers, addUser, getUser, updateUser, deleteUser };
+export { getUsers, add, getOneUser, update, remove };

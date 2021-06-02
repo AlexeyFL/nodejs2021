@@ -1,16 +1,32 @@
 import { v4 as uuid } from 'uuid';
 
 class Task {
-  constructor({
-    id = uuid(),
-    title = 'Autotest task',
-    order = 0,
-    description = 'Lorem ipsum',
-    userId = null,
-    boardId = null,
-    columnId = null,
-  } = {}) {
-    this.id = id
+  id?: string;
+
+  title?: string;
+
+  order?: number;
+
+  description?: string;
+
+  userId?: string | null;
+
+  boardId?: string | null;
+
+  columnId?: string | null;
+
+  constructor(
+    {
+      id = uuid(),
+      title = 'Autotest task',
+      order = 0,
+      description = 'Lorem ipsum',
+      userId = null,
+      boardId = null,
+      columnId = null,
+    } = {} as Task
+  ) {
+    this.id = id;
     this.title = title;
     this.order = order;
     this.description = description;
@@ -19,19 +35,7 @@ class Task {
     this.columnId = columnId;
   }
 
-  getTask() {
-    return {
-      id: this.id,
-      title: this.title,
-      order: this.order,
-      description: this.description,
-      userId: this.userId,
-      boardId: this.boardId,
-      columnId: this.columnId,
-    };
-  }
-
-  static toResponse(task) {
+  static toResponse(task:Task):Task {
     const { id, title, order, description, userId, boardId, columnId } = task;
     return { id, title, order, description, userId, boardId, columnId };
   }
