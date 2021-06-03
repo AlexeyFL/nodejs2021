@@ -1,4 +1,4 @@
-import { Router, Response, Request } from 'express';
+import Express,{ Router, Response, Request } from 'express';
 
 import Task from './tasks.model';
 
@@ -37,10 +37,10 @@ router.route('/:id').put(async (req:Request, res:Response) => {
 });
 
 // create new Task
-router.route('/').post(async (req:Request, res:Response) => {
+router.route('/').post(async (req:Express.Request, res:Response) => {
   const {boardId} = req.params
-  const newTask = new Task({ ...req.body, boardId: boardId! });
-
+  console.log(boardId)
+  const newTask = new Task({ ...req.body, boardId });
   tasksService.addTask(newTask);
   res.status(201).json(newTask);
 });
