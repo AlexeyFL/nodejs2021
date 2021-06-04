@@ -41,6 +41,11 @@ const transports = [
     filename: 'src/logs/all.log',
     format: winston.format.json(),
   }),
+  new winston.transports.File({
+    filename: 'src/logs/http.log',
+    format: winston.format.json(),
+    level: 'http',
+  }),
 ];
 
 const Logger = winston.createLogger({
