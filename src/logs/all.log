@@ -1,0 +1,1 @@
+{"message":"\u001b[35mGET 404 /users/454545 Query params {\"id\":\"454545\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 2.297 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-04 22:47:14"}
