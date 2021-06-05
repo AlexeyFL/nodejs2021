@@ -1,0 +1,4 @@
+{"message":"\u001b[31muncaughtException \"app.use() requires a middleware function\"\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 12:52:00"}
+{"message":"\u001b[31muncaughtException \"Ooops\"\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 14:57:31"}
+{"message":"\u001b[31muncaughtException \"Ooops\"\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 15:11:13"}
+{"message":"\u001b[31muncaughtException \"listen EADDRINUSE: address already in use :::4000\"\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 17:33:08"}
