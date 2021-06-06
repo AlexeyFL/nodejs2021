@@ -1,5 +1,7 @@
 import { v4 as uuid } from 'uuid';
-import { Router, Response, Request } from 'express';
+import { Router, Response, Request, NextFunction } from 'express';
+
+import { CustomError } from '../../utils';
 
 import Board from './board.model';
 
@@ -14,13 +16,19 @@ router.route('/').get(async (_req: Request, res: Response) => {
 });
 
 // get board by id
-router.route('/:id').get(async (req, res) => {
-  const boardId = req.params.id;
-  const board = await boardsService.getBoard(boardId);
-  if (board) {
-    res.status(200).json(board);
-  } else {
-    res.status(404).json([]);
+router.route('/:id').get(async (req, res, next: NextFunction) => {
+  try {
+    const boardId = req.params.id;
+    const board = await boardsService.getBoard(boardId);
+    if (board) {
+      res.status(200).json(board);
+    } else {
+      // res.status(404).json([]);
+      throw new CustomError(404, 'Board does not exists');
+    }
+    next();
+  } catch (error) {
+    next(error);
   }
 });
 

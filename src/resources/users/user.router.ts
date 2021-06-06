@@ -1,5 +1,6 @@
 import { v4 as uuid } from 'uuid';
-import { Router, Response, Request } from 'express';
+import { Router, Response, Request, NextFunction } from 'express';
+import { CustomError } from '../../utils';
 
 import User from './user.model';
 
@@ -14,14 +15,21 @@ router.route('/').get(async (_req: Request, res: Response) => {
 });
 
 // get user by id
-router.route('/:id').get(async (req: Request, res: Response) => {
-  const user = await usersService.getUser(req.params['id']!);
-  if (user) {
-    res.status(200).json(User.toResponse(user));
-  }else{
-    res.status(404).send('Empty!');
-  }
-});
+router
+  .route('/:id')
+  .get(async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const user = await usersService.getUser(req.params['id']!);
+      if (user) {
+        res.status(200).json(User.toResponse(user));
+      } else {
+        throw new CustomError(404, 'User does not exists');
+      }
+      next();
+    } catch (error) {
+      next(error);
+    }
+  });
 
 // update user by id
 router.route('/:id').put(async (req: Request, res: Response) => {

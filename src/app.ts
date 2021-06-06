@@ -2,7 +2,7 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 import swaggerUI from 'swagger-ui-express';
 import * as path from 'path';
 import YAML from 'yamljs';
-import { StatusCodes } from 'http-status-codes';
+// import { StatusCodes } from 'http-status-codes';
 import {
   morganHandler,
   Logger,
@@ -15,7 +15,6 @@ import taskRouter from './resources/tasks/tasks.router';
 
 import { handleError } from './utils/index';
 
-console.log(StatusCodes);
 
 const app: Application = express();
 const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
