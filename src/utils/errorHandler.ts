@@ -12,14 +12,22 @@ class CustomError extends Error {
   }
 }
 
-const handleError = (err: CustomError, _req: Request, res: Response, next: NextFunction): void => {
+const handleError = (
+  err: CustomError,
+  _req: Request,
+  res: Response,
+  next: NextFunction
+): void => {
   const { statusNum, message } = err;
 
-  res.status(statusNum).json({
-    status: 'error',
-    statusNum,
-    message,
-  });
+  if (err.statusNum) {
+    res.status(statusNum).json({
+      status: 'error',
+      statusNum,
+      message,
+    });
+  }
+
   next();
 };
 

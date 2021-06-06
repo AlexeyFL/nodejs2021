@@ -13,3 +13,50 @@
 {"message":"\u001b[35mGET 500 /error Query params {} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 75 - 2.134 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 17:47:37"}
 {"message":"\u001b[35mGET 200 /users Query params {} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 2 - 2.627 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 17:52:19"}
 {"message":"\u001b[35mGET 404 /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 2.300 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 17:58:30"}
+{"message":"\u001b[35mGET 404 /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 2.148 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:16:14"}
+{"message":"\u001b[35mGET 404 /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 2.179 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:16:48"}
+{"message":"\u001b[35mGET 404 /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 2.488 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:18:02"}
+{"message":"\u001b[35mGET {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 2.301 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:28:45"}
+{"message":"\u001b[35m{\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"}\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:29:18"}
+{"message":"\u001b[35mGET {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 1.925 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:29:18"}
+{"message":"\u001b[35mreqstatus 404\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:35:50"}
+{"message":"\u001b[35mGET 404 /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 1.987 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:35:50"}
+{"message":"\u001b[35m404\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:36:12"}
+{"message":"\u001b[35mGET 404 /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 3.130 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:36:12"}
+{"message":"\u001b[35m404\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:36:57"}
+{"message":"\u001b[35mGET 404 /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 2.912 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:36:57"}
+{"message":"\u001b[35m404\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:40:40"}
+{"message":"\u001b[35mGET 404 /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 2.018 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:40:40"}
+{"message":"\u001b[35mGET 404 /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 3.702 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:46:39"}
+{"message":"\u001b[35mGET 404 /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 0.372 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:46:51"}
+{"message":"\u001b[35mGET 404 /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 2.179 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:47:59"}
+{"message":"\u001b[35mGET 404 /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 2.420 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:49:30"}
+{"message":"\u001b[35mGET 404 /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 3.145 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:52:29"}
+{"message":"\u001b[35mGET 404 /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 2.142 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 18:59:55"}
+{"message":"\u001b[35mGET 404 /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 2.642 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 19:00:52"}
+{"message":"\u001b[35mGET 404 /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 2.319 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 19:01:47"}
+{"message":"\u001b[35mGET 404 /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 3.111 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 19:05:47"}
+{"message":"\u001b[31muncaughtException \"Ooops\"\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 20:07:04"}
+{"message":"\u001b[31muncaughtException \"Ooops\"\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:04:10"}
+{"message":"\u001b[31muncaughtException \"Ooops\"\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:04:17"}
+{"message":"\u001b[31munhandledRejection, reason: Error: Oops [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:04:17"}
+{"message":"\u001b[31munhandledRejection, reason: Error: Oops [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:17:03"}
+{"message":"\u001b[31munhandledRejection, reason: Error: Oops [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:19:02"}
+{"message":"\u001b[31munhandledRejection, reason: Error: Oops [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:19:11"}
+{"message":"\u001b[31munhandledRejection, reason: Error: Oops [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:19:14"}
+{"message":"\u001b[31munhandledRejection, reason: Error: Oops [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:20:10"}
+{"message":"\u001b[31munhandledRejection, reason: Error: Oops [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:22:06"}
+{"message":"\u001b[31munhandledRejection, reason: Error: Oops [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:22:06"}
+{"message":"\u001b[31munhandledRejection, reason: Error: Oops [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:22:36"}
+{"message":"\u001b[31munhandledRejection, reason: Error: Oops [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:22:36"}
+{"message":"\u001b[31munhandledRejection, reason: Error: Oops [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:22:36"}
+{"message":"\u001b[31munhandledRejection, reason: Error: Oops [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:24:17"}
+{"message":"\u001b[31munhandledRejection, reason: Error: Oops [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:24:17"}
+{"message":"\u001b[31muncaughtException \"Ooops\"\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:24:31"}
+{"message":"\u001b[31munhandledRejection, reason: Error: Oops [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:24:31"}
+{"message":"\u001b[31munhandledRejection, reason: Error: Oops [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:31:20"}
+{"message":"\u001b[31munhandledRejection, reason: Error: Oops [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:32:54"}
+{"message":"\u001b[31munhandledRejection, reason: Error: Oops [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:34:02"}
+{"message":"\u001b[31munhandledRejection, reason: Error: Oops [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-05 21:34:23"}
+{"message":"\u001b[35mGET 404 /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 2.379 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 22:28:23"}
+{"message":"\u001b[35mGET 404 /users/4 Query params {\"id\":\"4\"} Body {\"name\":\"TEST_USER\",\"login\":\"test_use r\"\"password\":\"***\"} size 6 - 3.962 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-05 22:37:02"}
