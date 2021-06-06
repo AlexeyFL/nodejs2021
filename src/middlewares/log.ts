@@ -3,8 +3,6 @@ import path from 'path';
 
 const LOGS_DIR = path.join(__dirname, '../logs');
 
-console.log('LOGS_DIR---', LOGS_DIR)
-
 const levels = {
   error: 0,
   warn: 1,
