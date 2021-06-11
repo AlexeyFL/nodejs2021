@@ -12,8 +12,8 @@ services:
       - custom-net
     restart: always
     volumes: 
-      - ./logs:/app/src/logs
-      - ./src:/app/src
+      - ./logs:/usr/app/src/logs
+      - ./src:/usr/app/src
   db:
     build: ./database/
     image: postgres
