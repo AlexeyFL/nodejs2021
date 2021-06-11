@@ -2,7 +2,6 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 import swaggerUI from 'swagger-ui-express';
 import * as path from 'path';
 import YAML from 'yamljs';
-// import { StatusCodes } from 'http-status-codes';
 import {
   morganHandler,
   Logger,
