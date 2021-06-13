@@ -1,4 +1,6 @@
-import Express,{ Router, Response, Request } from 'express';
+import Express, { Router, Response, Request, NextFunction } from 'express';
+
+import { CustomError } from '../../utils';
 
 import Task from './tasks.model';
 
@@ -13,18 +15,24 @@ router.route('/').get(async (_req: Request, res: Response) => {
 });
 
 // get task by id
-router.route('/:id').get(async (req, res) => {
-  const taskId = req.params.id;
-  const task = await tasksService.getTask(taskId);
-  if (task) {
-    res.status(200).json(Task.toResponse(task));
-  } else {
-    res.status(404).send([]);
+router.route('/:id').get(async (req, res, next: NextFunction) => {
+  try {
+    const taskId = req.params.id;
+    const task = await tasksService.getTask(taskId);
+    if (task) {
+      res.status(200).json(Task.toResponse(task));
+    } else {
+      // res.status(404).send([]);
+      throw new CustomError(404, 'Task does not exists');
+    }
+    next();
+  } catch (error) {
+    next(error);
   }
 });
 
 // update task by id
-router.route('/:id').put(async (req:Request, res:Response) => {
+router.route('/:id').put(async (req: Request, res: Response) => {
   const { body } = req;
   const taskId = req.params['id'];
 
@@ -37,16 +45,16 @@ router.route('/:id').put(async (req:Request, res:Response) => {
 });
 
 // create new Task
-router.route('/').post(async (req:Express.Request, res:Response) => {
-  const {boardId} = req.params
-  console.log(boardId)
+router.route('/').post(async (req: Express.Request, res: Response) => {
+  const { boardId } = req.params;
+  console.log(boardId);
   const newTask = new Task({ ...req.body, boardId });
   tasksService.addTask(newTask);
   res.status(201).json(newTask);
 });
 
 // delete task
-router.route('/:id').delete(async (req:Request, res:Response) => {
+router.route('/:id').delete(async (req: Request, res: Response) => {
   const taskId = req.params['id'];
   await tasksService.deleteTask(taskId!);
 

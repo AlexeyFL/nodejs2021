@@ -1,10 +1,3 @@
-# RS School REST service
-
-## Prerequisites
-
-- Git - [Download & Install Git](https://git-scm.com/downloads).
-- Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package manager.
-
 ## Downloading
 
 ```
@@ -16,10 +9,15 @@ git clone {repository URL}
 ```
 npm install
 ```
+## Running application with typescript
 
+```
+npm run dev 
+```
 ## Running application
 
 ```
+npm build
 npm start
 ```
 
