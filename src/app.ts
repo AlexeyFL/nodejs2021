@@ -32,7 +32,7 @@ app.use('/', (req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-// Promise.reject(Error('Oops'));
+//  Promise.reject(Error('Oops'));
 // throw new Error('Ooops');
 
 app.use('/users', userRouter);

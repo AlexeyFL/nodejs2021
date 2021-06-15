@@ -1,3 +1,9 @@
 {"message":"\u001b[35mGET 200 /boards/ Query params {} Body {\"title\":\"board\",\"columns\":[{\"id\":null,\"title\":\"Backlog\",\"order\":1},{\"id\":null,\"title\":\"Sprint\",\"order\":2}]} size 163 - 7.954 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-08 12:33:33"}
 [35mhttp[39m: [35mGET 200 /boards/ Query params {} Body {"title":"board","columns":[{"id":null,"title":"Backlog","order":1},{"id":null,"title":"Sprint","order":2}]} size 163 - 9.418 ms[39m
 [35m[39m {"timestamp":"06-08 12:44:48"}
+{"message":"\u001b[31muncaughtException, reason: Error: listen EADDRINUSE: address already in use :::4000 uncaughtException\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-15 15:43:49"}
+{"message":"\u001b[31muncaughtException, reason: Error: listen EADDRINUSE: address already in use :::4000 uncaughtException\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-15 15:44:29"}
+{"message":"\u001b[35mGET 200 / Query params {} Body {} size 22 - 5.511 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-15 15:44:29"}
+{"message":"\u001b[35mGET 403 /favicon.ico Query params {} Body {} size 56 - 1.188 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-15 15:44:29"}
+{"message":"\u001b[31muncaughtException, reason: Error: listen EADDRINUSE: address already in use :::4000 uncaughtException\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-15 15:44:47"}
+{"message":"\u001b[31munhandledRejection, reason: Error: Oops [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-15 15:51:57"}

@@ -10,4 +10,4 @@ COPY . .
 
 RUN npm install -g nodemon
 
-CMD nodemon --legacy-watch src/server.ts
+CMD nodemon src/server.ts
