@@ -10,3 +10,6 @@
 {"message":"\u001b[35mGET 403 /favicon.ico Query params {} Body {} size 56 - 2.458 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-15 16:04:31"}
 {"message":"\u001b[35mGET 200 / Query params {} Body {} size 22 - 2.629 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-15 16:04:47"}
 {"message":"\u001b[35mGET 403 /favicon.ico Query params {} Body {} size 56 - 1.454 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-15 16:04:47"}
+{"message":"\u001b[35mGET 200 / Query params {} Body {} size 19 - 3.154 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-15 20:34:59"}
+{"message":"\u001b[35mGET 403 /favicon.ico Query params {} Body {} size 56 - 0.785 ms\u001b[39m\n\u001b[35m\u001b[39m","level":"\u001b[35mhttp\u001b[39m","timestamp":"06-15 20:35:00"}
+{"message":"\u001b[31muncaughtException, reason: Error: listen EADDRINUSE: address already in use :::4000 uncaughtException\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-15 18:03:26"}

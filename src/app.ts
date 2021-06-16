@@ -12,13 +12,24 @@ import userRouter from './resources/users/user.router';
 import boardRouter from './resources/boards/board.router';
 import taskRouter from './resources/tasks/tasks.router';
 
+import {TryDBConnect} from './common/dbConnection'
 import { handleError } from './utils/index';
+
 
 
 const app: Application = express();
 const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
 
 app.use(express.json());
+
+
+app.use(async (_req: Request, res: Response, next) => {
+  await TryDBConnect(() => {
+    res.json({
+      error: 'Database connection error, please try again later',
+    });
+  }, next);
+});
 
 app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
