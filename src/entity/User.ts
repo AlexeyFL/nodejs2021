@@ -1,35 +1,28 @@
-import { Entity, PrimaryGeneratedColumn, Column, Index } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Task } from './Task';
 
 @Entity({ name: 'user' })
 export class User {
-  @PrimaryGeneratedColumn()
-  id = 0;
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
 
-  @Index({ unique: true })
-  @Column('varchar', { length: 500, nullable: true })
-  email: string | null = null;
-
-  @Column('varchar', { length: 1000, nullable: true })
-  password = '';
+  @Column('varchar', { length: 50, nullable: true })
+  name?: string = 'TEST_USER';
 
   @Column('varchar', { length: 50 })
-  firstName = '';
+  login?: string = 'test_user';
 
-  @Column('varchar', { length: 50 })
-  lastName = '';
+  @Column('varchar', { length: 10 })
+  password?: string = 'P@55w0rd';
 
-  @Column('varchar', { length: 15000, nullable: true })
-  photo = '';
+  @OneToMany(() => Task, (task: Task) => task.user)
+  tasks!: Array<Task>;
 
-  @Column('varchar', { length: 100, nullable: true })
-  phone = '';
-
-  @Column('text', { nullable: true })
-  about = '';
-
-  @Column({ type: 'timestamptz', default: 'now()' })
-  createdAt: Date = new Date();
-
-  @Column({ type: 'timestamptz' })
-  updatedAt: Date = new Date();
+  static toResponse(user: User | undefined): User | undefined {
+    if (user !== undefined) {
+      const { id, name, login, tasks } = user;
+      return { id, name, login, tasks };
+    }
+    return undefined;
+  }
 }

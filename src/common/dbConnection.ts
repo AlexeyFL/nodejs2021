@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { Connection, createConnection, getConnection } from 'typeorm';
 import ORMConfig from '../ormconfig';
 

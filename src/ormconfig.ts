@@ -4,13 +4,12 @@ import path from "path";
 const isCompiled = path.extname(__filename).includes('js');
 
 export default {
-  name: "test",
   type: "postgres",
-  host: process.env['HOST'] || "db",
-  port: process.env['POSTGRESS_PORT'] ||  4533,
+  host: process.env['POSTGRESS_HOST'],
+  port: process.env['POSTGRESS_PORT'] ||  5432,
   username: process.env['POSTGRES_USER'] || "postgres",
-  password: process.env['POSTGRES_PASSWORD'] || "postgres",
-  database: process.env['POSTGRES_DB'] || "node_project",
+  password: process.env['POSTGRES_PASSWORD'] || "12345",
+  database: process.env['POSTGRES_DB'] || "postgres",
   synchronize: true,
   logging: true,
   autoReconnect: true,

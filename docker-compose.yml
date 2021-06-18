@@ -9,6 +9,8 @@ services:
       - .env
     depends_on:
       - db
+    environment:
+      DB_HOST: host.docker.internal
     networks:
       - custom-net
     restart: always
@@ -17,10 +19,9 @@ services:
       - .:/app/logs
       - .:/app/
   db:
-    build: ./database/
+    image: postgres:13.3-alpine
     env_file:
       - .env
-    image: postgres
     ports:
       - ${POSTGRESS_PORT}:${POSTGRESS_PORT}
     environment:
@@ -30,9 +31,7 @@ services:
     networks:
       - custom-net
     volumes:
-      - db-data:/var/lib/postgresql/data
-volumes:
-  db-data:
+      - ./db-data:/var/lib/postgresql/data
 
 networks:
   custom-net:
