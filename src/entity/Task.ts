@@ -11,7 +11,7 @@ import { Board } from './Board';
 @Entity({ name: 'task' })
 export class Task {
   @PrimaryGeneratedColumn('uuid')
-  id!: string;
+  id?: string;
 
   @Column('varchar', { length: 50, nullable: true })
   title?: string = 'Autotest task';
@@ -34,7 +34,7 @@ export class Task {
 
   @ManyToOne(() => Board, (board: Board) => board.id)
   @JoinColumn()
-  board!: Board;
+  board?: Board;
 
   @Column('varchar', { length: 500 })
   columnId?: string | null = null;
