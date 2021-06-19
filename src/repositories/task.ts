@@ -24,12 +24,13 @@ export const getTasks = async (): Promise<Array<Task>> => {
   return taskRepository.find();
 };
 
-export const createTask = async (payload: ITaskPayload): Promise<Task> => {
+export const createTask = async (id:string | undefined, payload: ITaskPayload): Promise<Task> => {
   const taskRepository = getRepository(Task);
   const task = new Task();
   return taskRepository.save({
     ...task,
     ...payload,
+    boardId: id
   } as Task);
 };
 
