@@ -1,3 +1,30 @@
+## Build image
+
+```
+docker build . --tag node-app  
+docker build ./database --tag postgres-app
+```
+
+## Run container
+
+```
+docker run --name node-server-app -p 4000:4000 -d node-app
+```
+## Stop container
+
+```
+docker stop node-server-app
+```
+## Build docker compose
+
+```
+docker-compose up --build
+```
+## Stop docker compose
+
+```
+docker-compose down
+```
 ## Downloading
 
 ```
@@ -62,9 +89,3 @@ If you're using VSCode, you can get a better developer experience from integrati
 ```
 npm run lint
 ```
-
-### Debugging in VSCode
-
-Press <kbd>F5</kbd> to debug.
-
-For more information, visit: https://code.visualstudio.com/docs/editor/debugging
