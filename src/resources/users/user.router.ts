@@ -47,17 +47,16 @@ router.route('/:id').delete(async (req, res) => {
   const userId = req.params.id;
   await deleteUser(userId);
 
-  res.status(204).json(null);
-
   await getConnection()
     .createQueryBuilder()
     .update(Task)
-    .set({ 
-      userId: null
+    .set({
+      userId: null,
     })
-    .where("userId = :userId", { userId })
+    .where('userId = :userId', { userId })
     .execute();
-
+    
+  res.status(204).json(null);
 });
 
 export default router;
