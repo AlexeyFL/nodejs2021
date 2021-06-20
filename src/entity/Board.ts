@@ -14,11 +14,12 @@ export class Board {
   @Column('varchar', { nullable: true })
   title?: string = 'Autotest board';
 
-  @Column('json', { nullable: true })
+  @Column('json')
   columns: IBoardColumn[] = [
     { id: null, title: 'Backlog', order: 1 } as IBoardColumn,
     { id: null, title: 'Sprint', order: 2 } as IBoardColumn,
   ];
+
 
   static toResponse(board: Board | undefined): Board | undefined {
     if (board !== undefined) {

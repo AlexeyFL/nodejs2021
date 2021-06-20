@@ -1,7 +1,5 @@
 import { Router, Response, Request } from 'express';
-// import { CustomError } from '../../utils';
 import { getConnection } from 'typeorm';
-
 import { Board } from '../../entity/Board';
 import { Task } from '../../entity/Task';
 
@@ -41,16 +39,18 @@ router.route('/:id').put(async (req: Request, res: Response) => {
 });
 
 router.route('/:id').delete(async (req, res) => {
-  const boardId = req.params.id;
+    const boardId = req.params.id;
   await deleteBoard(boardId);
 
-  res.status(204).json(null);
   await getConnection()
     .createQueryBuilder()
     .delete()
     .from(Task)
     .where('boardId = :boardId', { boardId })
     .execute();
+    
+  res.status(204).json(null);
 });
 
 export default router;
+

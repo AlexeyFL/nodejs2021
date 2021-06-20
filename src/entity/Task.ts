@@ -1,7 +1,7 @@
 import {
   Entity,
   PrimaryGeneratedColumn,
-  Column
+  Column,
 } from 'typeorm';
 
 
@@ -10,13 +10,13 @@ export class Task {
   @PrimaryGeneratedColumn('uuid')
   id?: string;
 
-  @Column('varchar', { length: 50, nullable: true })
+  @Column('varchar', { nullable: true })
   title?: string = 'Autotest task';
 
-  @Column('int')
+  @Column('varchar')
   order?: number = 0;
 
-  @Column('varchar', { length: 500 })
+  @Column('varchar')
   description?: string = 'Lorem ipsum';
 
   @Column('varchar', { nullable: true })
