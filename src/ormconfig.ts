@@ -18,9 +18,9 @@ export default {
   entities: [
     `src/entity/**/*.${isCompiled ? "js" : "ts"}`
   ],
-  // migrations: [
-  //   `src/migration/**/*.${isCompiled ? "js" : "ts"}`
-  // ],
+  migrations: [
+    `src/migration/**/*.${isCompiled ? "js" : "ts"}`
+  ],
   cli: {
     "entitiesDir": "src/entity",
     "migrationsDir": "src/migration",

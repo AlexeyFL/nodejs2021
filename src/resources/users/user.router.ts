@@ -47,7 +47,7 @@ router.route('/:id').delete(async (req, res) => {
   const userId = req.params.id;
   await deleteUser(userId);
 
-  res.status(204).json(null);
+
 
   await getConnection()
     .createQueryBuilder()
@@ -57,6 +57,8 @@ router.route('/:id').delete(async (req, res) => {
     })
     .where("userId = :userId", { userId })
     .execute();
+
+    res.status(204).json(null);
 
 });
 
