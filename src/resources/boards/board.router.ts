@@ -1,6 +1,7 @@
 import { Router, Response, Request } from 'express';
-
+import { getConnection } from 'typeorm';
 import { Board } from '../../entity/Board';
+import { Task } from '../../entity/Task';
 
 import {
   getBoards,
@@ -41,83 +42,15 @@ router.route('/:id').delete(async (req, res) => {
     const boardId = req.params.id;
   await deleteBoard(boardId);
 
-  res.status(204).json(null);
   await getConnection()
     .createQueryBuilder()
     .delete()
     .from(Task)
     .where('boardId = :boardId', { boardId })
     .execute();
-});
-
-export default router;
-
-/* import { v4 as uuid } from 'uuid';
-import { Router, Response, Request, NextFunction } from 'express';
-
-import { CustomError } from '../../utils';
-
-import Board from './board.model';
-
-import * as boardsService from './board.service';
-
-const router = Router();
-
-// get all boards
-router.route('/').get(async (_req: Request, res: Response) => {
-  const boards = await boardsService.getAllBoards();
-  res.status(200).json(boards.map(Board.toResponse));
-});
-
-// get board by id
-router.route('/:id').get(async (req, res, next: NextFunction) => {
-  try {
-    const boardId = req.params.id;
-    const board = await boardsService.getBoard(boardId);
-    if (board) {
-      res.status(200).json(board);
-    } else {
-      // res.status(404).json([]);
-      throw new CustomError(404, 'Board does not exists');
-    }
-    next();
-  } catch (error) {
-    next(error);
-  }
-});
-
-// update user by id
-router.route('/:id').put(async (req, res) => {
-  const { body } = req;
-  const boardId = req.params.id;
-
-  const newBoardBody = await boardsService.updateBoard({
-    ...body,
-    id: boardId,
-  });
-
-  res.json(newBoardBody);
-});
-
-// create new board
-router.route('/').post(async (req, res) => {
-  const newBoard = new Board({
-    id: uuid(),
-    title: req.body.title,
-    columns: req.body.columns,
-  });
-
-  boardsService.addBoard(newBoard);
-  res.status(201).json(newBoard);
-});
-
-// delete board
-router.route('/:id').delete(async (req, res) => {
-  const boardId = req.params.id;
-  await boardsService.deleteBoard(boardId);
-
+    
   res.status(204).json(null);
 });
 
 export default router;
- */
+

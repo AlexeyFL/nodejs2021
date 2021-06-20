@@ -55,7 +55,7 @@ router.route('/:id').delete(async (req, res) => {
     })
     .where('userId = :userId', { userId })
     .execute();
-    
+
   res.status(204).json(null);
 });
 
