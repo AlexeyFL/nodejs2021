@@ -150,3 +150,16 @@
 {"message":"\u001b[31munhandledRejection, reason: QueryFailedError: value too long for type character varying(10) [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-20 20:32:54"}
 {"message":"\u001b[31munhandledRejection, reason: QueryFailedError: value too long for type character varying(10) [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-20 20:32:59"}
 {"message":"\u001b[31munhandledRejection, reason: QueryFailedError: value too long for type character varying(10) [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-20 20:33:04"}
+{"message":"\u001b[31munhandledRejection, reason: QueryFailedError: relation \"user\" does not exist [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-20 21:20:43"}
+{"message":"\u001b[31munhandledRejection, reason: QueryFailedError: relation \"user\" does not exist [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-20 21:20:48"}
+{"message":"\u001b[31munhandledRejection, reason: QueryFailedError: relation \"user\" does not exist [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-20 21:20:53"}
+{"message":"\u001b[31munhandledRejection, reason: QueryFailedError: relation \"user\" does not exist [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-20 21:20:57"}
+{"message":"\u001b[31munhandledRejection, reason: QueryFailedError: relation \"user\" does not exist [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-20 21:21:03"}
+{"message":"\u001b[31munhandledRejection, reason: QueryFailedError: relation \"user\" does not exist [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-20 21:21:08"}
+{"message":"\u001b[31munhandledRejection, reason: QueryFailedError: relation \"board\" does not exist [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-20 21:21:13"}
+{"message":"\u001b[31munhandledRejection, reason: QueryFailedError: relation \"board\" does not exist [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-20 21:21:18"}
+{"message":"\u001b[31munhandledRejection, reason: QueryFailedError: relation \"board\" does not exist [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-20 21:21:23"}
+{"message":"\u001b[31munhandledRejection, reason: QueryFailedError: relation \"board\" does not exist [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-20 21:21:29"}
+{"message":"\u001b[31munhandledRejection, reason: QueryFailedError: relation \"board\" does not exist [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-20 21:21:34"}
+{"message":"\u001b[31munhandledRejection, reason: QueryFailedError: relation \"board\" does not exist [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-20 21:21:38"}
+{"message":"\u001b[31munhandledRejection, reason: QueryFailedError: relation \"board\" does not exist [object Promise]\u001b[39m","level":"\u001b[31merror\u001b[39m","timestamp":"06-20 21:21:43"}

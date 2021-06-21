@@ -13,7 +13,7 @@ export class Task {
   @Column('varchar', { nullable: true })
   title?: string = 'Autotest task';
 
-  @Column('varchar')
+  @Column('int')
   order?: number = 0;
 
   @Column('varchar')

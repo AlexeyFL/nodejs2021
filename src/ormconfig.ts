@@ -8,7 +8,8 @@ export default {
   username: process.env['POSTGRES_USER'] || "postgres",
   password: process.env['POSTGRES_PASSWORD'] || "12345",
   database: process.env['POSTGRES_DB'] || "postgres",
-  synchronize: true,
+  synchronize: false,
+  migrationsRun: true,
   logging: true,
   autoReconnect: true,
   reconnectTries: Number.MAX_VALUE,
@@ -16,11 +17,11 @@ export default {
   entities: [
     join(__dirname, 'entity/*{.ts,.js}')
   ],
-  // migrations: [
-  //   join(__dirname, 'migrations/*{.ts,.js}')
-  // ],
+  migrations: [
+    join(__dirname, 'migrations/*{.ts,.js}')
+  ],
   cli: {
     "entitiesDir": "src/entity",
-    "migrationsDir": "src/migration",
+    "migrationsDir": "src/migrations",
   },
 } as ConnectionOptions;

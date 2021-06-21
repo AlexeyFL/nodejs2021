@@ -39,7 +39,7 @@ router.route('/:id').put(async (req: Request, res: Response) => {
 });
 
 router.route('/:id').delete(async (req, res) => {
-    const boardId = req.params.id;
+  const boardId = req.params.id;
   await deleteBoard(boardId);
 
   await getConnection()
@@ -48,9 +48,8 @@ router.route('/:id').delete(async (req, res) => {
     .from(Task)
     .where('boardId = :boardId', { boardId })
     .execute();
-    
+
   res.status(204).json(null);
 });
 
 export default router;
-

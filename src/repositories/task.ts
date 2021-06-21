@@ -13,10 +13,6 @@ export interface ITaskPayload {
   boardId?: string | null;
 
   columnId?: string | null;
-
-  user?: string | null;
-
-  board?: string | null;
 }
 
 export const getTasks = async (): Promise<Array<Task>> => {
@@ -24,12 +20,16 @@ export const getTasks = async (): Promise<Array<Task>> => {
   return taskRepository.find();
 };
 
-export const createTask = async (payload: ITaskPayload): Promise<Task> => {
+export const createTask = async (
+  boardId: string | undefined,
+  payload: ITaskPayload
+): Promise<Task> => {
   const taskRepository = getRepository(Task);
   const task = new Task();
   return taskRepository.save({
     ...task,
     ...payload,
+    boardId,
   } as Task);
 };
 

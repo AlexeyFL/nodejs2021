@@ -9,7 +9,7 @@ export type IBoardColumn = {
 @Entity({ name: 'board' })
 export class Board {
   @PrimaryGeneratedColumn('uuid')
-  id!: string;
+  id?: string;
 
   @Column('varchar', { nullable: true })
   title?: string = 'Autotest board';
