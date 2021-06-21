@@ -1,11 +1,11 @@
 
 ## Запуск приложения
-1. docker-compose up -d --build
-2. docker-compose up
-3. В новом окне терминала npm run docker:sh
-4. npm run migration:generate
-5. npm run migration:run
-6. В новом окне терминала npm run test
+1. **docker-compose up -d --build**
+2. **docker-compose up**
+3. В новом окне терминала **npm run docker:sh**
+4. **npm run migration:generate**
+5. **npm run migration:run**
+6. В новом окне терминала **npm run test**
 
 
 ## Build image
