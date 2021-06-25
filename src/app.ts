@@ -1,9 +1,12 @@
 import 'reflect-metadata';
 import express, { Application, Request, Response, NextFunction } from 'express';
+import { getConnection } from 'typeorm';
+
 // import cors from 'cors';
 import swaggerUI from 'swagger-ui-express';
 import * as path from 'path';
 import YAML from 'yamljs';
+import { User } from './entity/User';
 import {
   morganHandler,
   Logger,
@@ -29,6 +32,15 @@ app.use(async (_req: Request, res: Response, next) => {
       error: 'Database connection error, please try again later',
     });
   }, next);
+
+  await getConnection()
+    .createQueryBuilder()
+    .insert()
+    .into(User)
+    .values([
+      { name: 'admin', login: 'admin', password: 'admin' }
+    ])
+    .execute();
 });
 
 app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
