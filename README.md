@@ -1,4 +1,5 @@
 
 ## Запуск приложения
-1. **docker-compose up --build**
-2. **npm run test:auth**
+1. **npm i**
+2. **docker-compose up --build**
+3. **npm run test:auth**
