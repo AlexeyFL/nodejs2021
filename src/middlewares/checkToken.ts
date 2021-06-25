@@ -6,7 +6,7 @@ export const checkToken = (req: Request, res: Response, next: NextFunction) => {
   try {
     const authHeader = <string>req.headers.authorization;
     if (!authHeader) {
-      res.status(401).json({ message: 'Not token' });
+      res.status(401).json({ message: 'No token' });
     }
     const token = <string>authHeader.split(' ')[1];
     jwt.verify(token, JWT_SECRET_KEY!);

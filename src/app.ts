@@ -6,7 +6,7 @@ import { getConnection } from 'typeorm';
 import swaggerUI from 'swagger-ui-express';
 import * as path from 'path';
 import YAML from 'yamljs';
-import {checkToken} from './middlewares/checkToken'
+import { checkToken } from './middlewares/checkToken';
 import { User } from './entity/User';
 import {
   morganHandler,
@@ -17,6 +17,7 @@ import {
 import userRouter from './resources/users/user.router';
 import boardRouter from './resources/boards/board.router';
 import taskRouter from './resources/tasks/tasks.router';
+import loginRouter from './resources/login/login.router';
 
 import { TryDBConnect } from './common/dbConnection';
 import { handleError } from './utils/index';
@@ -38,9 +39,7 @@ app.use(async (_req: Request, res: Response, next) => {
     .createQueryBuilder()
     .insert()
     .into(User)
-    .values([
-      { name: 'admin', login: 'admin', password: 'admin' }
-    ])
+    .values([{ name: 'admin', login: 'admin', password: 'admin' }])
     .execute();
 });
 
@@ -59,7 +58,7 @@ app.use('/', (req: Request, res: Response, next: NextFunction) => {
 //  Promise.reject(Error('Oops'));
 // throw new Error('Ooops');
 
-
+app.use('/login', loginRouter);
 
 app.use(checkToken);
 
