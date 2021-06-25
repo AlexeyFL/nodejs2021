@@ -28,7 +28,7 @@ const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
 app.use(express.json());
 // app.use(cors);
 
-app.use('/', async (_req: Request, res: Response, next) => {
+app.use(async (_req: Request, res: Response, next) => {
   await TryDBConnect(() => {
     res.json({
       error: 'Database connection error, please try again later',
