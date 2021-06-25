@@ -6,6 +6,7 @@ import { getConnection } from 'typeorm';
 import swaggerUI from 'swagger-ui-express';
 import * as path from 'path';
 import YAML from 'yamljs';
+import {checkToken} from './middlewares/checkToken'
 import { User } from './entity/User';
 import {
   morganHandler,
@@ -57,6 +58,10 @@ app.use('/', (req: Request, res: Response, next: NextFunction) => {
 
 //  Promise.reject(Error('Oops'));
 // throw new Error('Ooops');
+
+
+
+app.use(checkToken);
 
 app.use('/users', userRouter);
 app.use('/boards', boardRouter);
