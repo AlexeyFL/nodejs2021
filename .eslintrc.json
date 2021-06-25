@@ -46,6 +46,7 @@
     "airbnb-typescript/base",
     "prettier"
   ],
+  "eslintIgnore": ["**/db-data/"],
   "rules": {
     "import/extensions": "off",
     "linebreak-style": "off",
