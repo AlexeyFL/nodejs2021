@@ -12,7 +12,6 @@ export const createToken = async (user: User | undefined) => {
     .where('login = :login', { login: user?.login })
     .getOne();
 
-    console.log(userDb)
 
   if (!userDb) {
     return undefined;

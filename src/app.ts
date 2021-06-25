@@ -28,20 +28,32 @@ const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
 app.use(express.json());
 // app.use(cors);
 
-app.use(async (_req: Request, res: Response, next) => {
+app.use('/', async (_req: Request, res: Response, next) => {
   await TryDBConnect(() => {
     res.json({
       error: 'Database connection error, please try again later',
     });
   }, next);
 
-  await getConnection()
+  const user = await getConnection()
     .createQueryBuilder()
-    .insert()
-    .into(User)
-    .values([{ name: 'admin', login: 'admin', password: 'admin' }])
-    .execute();
+    .select("user")
+    .from(User, "user")
+    .where("login = :login", { login: 'admin' })
+    .getOne();
+
+    console.log(user)
+
+    if(!user){
+      await getConnection()
+        .createQueryBuilder()
+        .insert()
+        .into(User)
+        .values([{ name: 'admin', login: 'admin', password: 'admin' }])
+        .execute();
+    }
 });
+
 
 app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
@@ -58,10 +70,10 @@ app.use('/', (req: Request, res: Response, next: NextFunction) => {
 //  Promise.reject(Error('Oops'));
 // throw new Error('Ooops');
 
-app.use('/login', loginRouter);
-
 app.use(checkToken);
 
+
+app.use('/login', loginRouter);
 app.use('/users', userRouter);
 app.use('/boards', boardRouter);
 boardRouter.use('/:boardId/tasks', taskRouter);
