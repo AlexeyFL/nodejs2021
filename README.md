@@ -5,4 +5,4 @@
 3. **npm run docker:sh**
 3. **npm run migration:generate**
 3. **npm run migration:run**
-3. **npm run test:auth**
+3. В новом окне терминала **npm run test:auth**
