@@ -35,23 +35,16 @@ app.use(async (_req: Request, res: Response, next) => {
     });
   }, next);
 
-  const user = await getConnection()
-    .createQueryBuilder()
-    .select("user")
-    .from(User, "user")
-    .where("login = :login", { login: 'admin' })
-    .getOne();
+  
 
-    console.log(user)
-
-    if(!user){
+   
       await getConnection()
         .createQueryBuilder()
         .insert()
         .into(User)
         .values([{ name: 'admin', login: 'admin', password: 'admin' }])
         .execute();
-    }
+    
 });
 
 
