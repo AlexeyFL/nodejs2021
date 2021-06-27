@@ -1,66 +1,53 @@
-import { v4 as uuid } from 'uuid';
-import { Router, Response, Request, NextFunction } from 'express';
+import { Router, Response, Request } from 'express';
+import { getConnection } from 'typeorm';
+import { Board } from '../../entity/Board';
+import { Task } from '../../entity/Task';
 
-import { CustomError } from '../../utils';
-
-import Board from './board.model';
-
-import * as boardsService from './board.service';
+import {
+  getBoards,
+  getBoard,
+  createBoard,
+  updateBoard,
+  deleteBoard,
+} from '../../repositories/board';
 
 const router = Router();
 
-// get all boards
 router.route('/').get(async (_req: Request, res: Response) => {
-  const boards = await boardsService.getAllBoards();
-  res.status(200).json(boards.map(Board.toResponse));
+  const boards = await getBoards();
+  res.status(boards ? 200 : 404).json(boards.map(Board.toResponse));
 });
 
-// get board by id
-router.route('/:id').get(async (req, res, next: NextFunction) => {
-  try {
-    const boardId = req.params.id;
-    const board = await boardsService.getBoard(boardId);
-    if (board) {
-      res.status(200).json(board);
-    } else {
-      // res.status(404).json([]);
-      throw new CustomError(404, 'Board does not exists');
-    }
-    next();
-  } catch (error) {
-    next(error);
-  }
+router.route('/:id').get(async (req: Request, res: Response) => {
+  const boardId = req.params['id'];
+  const board = await getBoard(boardId);
+
+  res.status(board ? 200 : 404).json(Board.toResponse(board));
 });
 
-// update user by id
-router.route('/:id').put(async (req, res) => {
+router.route('/').post(async (req: Request, res: Response) => {
+  const response = await createBoard(req.body);
+  res.status(201).json(response);
+});
+
+router.route('/:id').put(async (req: Request, res: Response) => {
   const { body } = req;
-  const boardId = req.params.id;
+  const boardId = req.params['id'];
 
-  const newBoardBody = await boardsService.updateBoard({
-    ...body,
-    id: boardId,
-  });
-
-  res.json(newBoardBody);
+  const response = await updateBoard(boardId, body);
+  res.status(200).json(response);
 });
 
-// create new board
-router.route('/').post(async (req, res) => {
-  const newBoard = new Board({
-    id: uuid(),
-    title: req.body.title,
-    columns: req.body.columns,
-  });
-
-  boardsService.addBoard(newBoard);
-  res.status(201).json(newBoard);
-});
-
-// delete board
 router.route('/:id').delete(async (req, res) => {
   const boardId = req.params.id;
-  await boardsService.deleteBoard(boardId);
+  await deleteBoard(boardId);
+
+  await getConnection()
+    .createQueryBuilder()
+    .delete()
+    .from(Task)
+    .where('boardId = :boardId', { boardId })
+    .execute();
 
   res.status(204).json(null);
 });
