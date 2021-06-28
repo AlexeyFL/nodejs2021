@@ -1,16 +1,10 @@
-/* import {PORT} from './common/config';
-import app from './app';
-
-app.listen(PORT, async () => {
-  console.log(`App running on ${PORT}!`)
-}); */
-
-
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { PORT } from './common/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+  await app.listen(PORT || 3000);
+  console.log(`App listen on port ${PORT}`);
 }
 bootstrap();

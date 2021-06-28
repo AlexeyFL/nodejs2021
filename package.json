@@ -17,7 +17,9 @@
     "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js --config ./src/ormconfig.ts",
     "docker:sh": "docker exec -it node_rest_server_1 sh",
     "migration:generate": "node --require ts-node/register ./node_modules/typeorm/cli.js migration:generate -n table -f ./src/ormconfig.ts",
-    "migration:run": "node --require ts-node/register ./node_modules/typeorm/cli.js migration:run -f ./src/ormconfig.ts"
+    "migration:run": "node --require ts-node/register ./node_modules/typeorm/cli.js migration:run -f ./src/ormconfig.ts",
+    "start-nest": "nest start",
+    "start-nest:dev": "nest start --watch"
   },
   "keywords": [
     "rs",
@@ -49,6 +51,9 @@
     ]
   },
   "dependencies": {
+    "@nestjs/common": "^7.6.18",
+    "@nestjs/core": "^7.6.18",
+    "@nestjs/platform-express": "^7.6.18",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
@@ -60,6 +65,8 @@
     "morgan": "^1.10.0",
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
+    "rxjs": "^7.1.0",
     "swagger-ui-express": "4.1.6",
     "typeorm": "^0.2.34",
     "uuid": "8.3.2",
@@ -67,6 +74,8 @@
     "yamljs": "0.3.0"
   },
   "devDependencies": {
+    "@nestjs/cli": "^7.6.0",
+    "@nestjs/schematics": "^7.3.1",
     "@types/bcrypt": "^5.0.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.10",
