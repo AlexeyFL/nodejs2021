@@ -11,14 +11,14 @@ export class BoardService {
   }
 
   createBoard(): string {
-    return 'Create Board!';
+    return `Create Board!`;
   }
 
-  updateBoard(): string {
-    return 'Update Board!';
+  updateBoard(id: string | undefined): string | undefined {
+    return `Update Board!  ${id}`;
   }
 
-  deleteBoard(): string {
-    return 'Delete Board!';
+  deleteBoard(id: string | undefined): string | undefined  {
+    return `Delete Board!  ${id}`;
   }
 }

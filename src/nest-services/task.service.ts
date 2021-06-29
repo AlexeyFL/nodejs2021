@@ -6,19 +6,19 @@ export class TaskService {
     return 'All Tasks!';
   }
 
-  getTask(): string {
-    return 'Task by id!';
+  getTask(id: string | undefined): string | undefined {
+    return `Task by id ${id}!`;
   }
 
   createTask(): string {
     return 'Create Task!';
   }
 
-  updateTask(): string {
-    return 'Update Task!';
+  updateTask(id: string | undefined): string | undefined {
+    return `Update Task ${id}!`;
   }
 
-  deleteTask(): string {
-    return 'Delete Task!';
+  deleteTask(id: string | undefined): string | undefined{
+    return `Delete Task ${id}!`;
   }
 }

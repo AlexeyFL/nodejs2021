@@ -6,19 +6,19 @@ export class UserService {
     return 'All users!';
   }
 
-  getUser(): string {
-    return 'User by id!';
+  getUser(id: string | undefined): string | undefined {
+    return `User by id ${id}!`;
   }
 
   createUser(): string {
     return 'Create user!';
   }
 
-  updateUser(): string {
-    return 'Update user!';
+  updateUser(id: string | undefined): string | undefined {
+    return `Update user ${id}!`;
   }
 
-  deleteUser(): string {
-    return 'Delete user!';
+  deleteUser(id: string | undefined): string | undefined {
+    return `Delete user ${id}!`;
   }
 }

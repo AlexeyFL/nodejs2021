@@ -11,12 +11,9 @@ export class BoardController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string | undefined) {
+  getOne(@Param('id') id: string | undefined) {
     return this.boardService.getBoard(id);
   }
-  /* getBoard(@Param('id') params): string | undefined {
-    return this.boardService.getBoard(params.id);
-  } */
 
   @Post()
   createBoard(): string {
@@ -24,12 +21,12 @@ export class BoardController {
   }
 
   @Put(':id')
-  updateBoard(): string {
-    return this.boardService.updateBoard();
+  updateOne(@Param('id') id: string | undefined) {
+    return this.boardService.updateBoard(id);
   }
 
   @Delete(':id')
-  deleteBoard(): string {
-    return this.boardService.deleteBoard();
+  deleteOne(@Param('id') id: string | undefined) {
+    return this.boardService.deleteBoard(id);
   }
 }
