@@ -15,6 +15,10 @@ export class UserService {
   }
 
   updateUser(): string {
-    return 'Create user!';
+    return 'Update user!';
+  }
+
+  deleteUser(): string {
+    return 'Delete user!';
   }
 }
