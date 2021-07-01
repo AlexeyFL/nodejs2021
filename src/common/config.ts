@@ -16,6 +16,7 @@ const { POSTGRESS_PORT } = process.env;
 const { POSTGRES_PASSWORD } = process.env;
 const { POSTGRES_USER } = process.env;
 const { POSTGRES_DB } = process.env;
+const { USE_FASTIFY } = process.env;
 
 // Routes
 const EXCLUDE_ROUTES = ['/doc', '/', '/login'];
@@ -32,4 +33,5 @@ export {
   POSTGRES_PASSWORD,
   POSTGRES_USER,
   POSTGRES_DB,
+  USE_FASTIFY
 };

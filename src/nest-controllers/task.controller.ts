@@ -1,16 +1,26 @@
-import { Controller, Get, Post, Put, Delete, Param } from '@nestjs/common';
+import {
+  HttpCode,
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Param,
+} from '@nestjs/common';
+
 import { TaskService } from '../nest-services/task.service';
 
-@Controller(':id')
+@Controller('/boards/:boardId/tasks')
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
-  @Get('tasks')
+  @Get()
+  @HttpCode(200)
   getTasks(): string {
     return this.taskService.getTasks();
   }
 
-  @Get('tasks/:id')
+  @Get(':id')
   getOne(@Param('id') id: string | undefined) {
     return this.taskService.getTask(id);
   }
@@ -20,12 +30,12 @@ export class TaskController {
     return this.taskService.createTask();
   }
 
-  @Put('tasks/:id')
+  @Put(':id')
   updateOne(@Param('id') id: string | undefined) {
     return this.taskService.updateTask(id);
   }
 
-  @Delete('tasks/:id')
+  @Delete(':id')
   deleteOne(@Param('id') id: string | undefined) {
     return this.taskService.deleteTask(id);
   }

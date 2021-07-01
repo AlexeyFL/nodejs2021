@@ -15,6 +15,8 @@ import { UserService } from './nest-services/user.service';
 import { BoardService } from './nest-services/board.service';
 import { TaskService } from './nest-services/task.service';
 
+import { User } from './entity/User';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -33,6 +35,7 @@ import { TaskService } from './nest-services/task.service';
         migrationsDir: 'src/migrations',
       },
     }),
+    TypeOrmModule.forFeature([User]),
   ],
   controllers: [UserController, BoardController, TaskController],
   providers: [UserService, BoardService, TaskService],
