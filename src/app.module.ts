@@ -8,14 +8,11 @@ import {
   POSTGRES_PASSWORD,
   POSTGRES_USER,
 } from './common/config';
-import { UserController } from './nest-controllers/user.controller';
-import { BoardController } from './nest-controllers/board.controller';
-import { TaskController } from './nest-controllers/task.controller';
-import { UserService } from './nest-services/user.service';
-import { BoardService } from './nest-services/board.service';
-import { TaskService } from './nest-services/task.service';
 
-import { User } from './entity/User';
+
+import { UserModule } from './user/user.module';
+import { BoardModule } from './board/board.module';
+import { TaskModule } from './task/task.module';
 
 @Module({
   imports: [
@@ -35,9 +32,11 @@ import { User } from './entity/User';
         migrationsDir: 'src/migrations',
       },
     }),
-    TypeOrmModule.forFeature([User]),
-  ],
-  controllers: [UserController, BoardController, TaskController],
-  providers: [UserService, BoardService, TaskService],
+    UserModule,
+    BoardModule,
+    TaskModule
+  ]
 })
-export class AppModule {}
+export class AppModule {
+  
+}

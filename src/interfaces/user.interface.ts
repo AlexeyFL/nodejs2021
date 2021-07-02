@@ -1,4 +1,4 @@
-export class CreateUserDto {
+export interface IUser {
   id?: string | undefined;
 
   name?: string | undefined;

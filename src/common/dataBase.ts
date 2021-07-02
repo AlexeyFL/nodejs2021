@@ -36,7 +36,7 @@ const updateUser = (user: User): User => {
   const userList = getAllUsers();
 
   const idx = userList.findIndex((listUser) => listUser.id === user.id);
-  console.log(userList);
+
   userList[idx] = user;
 
   return user;
