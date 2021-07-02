@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import {  Response } from 'express';
 import { CreateUserDto } from '../dto/user.dto';
-import { UserService } from '../nest-services/user.service';
+import { UserService } from './user.service';
 import { User } from '../entity/User';
 
 @Controller('users')

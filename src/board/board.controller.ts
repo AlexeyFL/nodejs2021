@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { Response } from 'express';
 import { CreateBoardDto } from '../dto/board.dto';
-import { BoardService } from '../nest-services/board.service';
+import { BoardService } from './board.service';
 import { Board } from '../entity/Board';
 
 @Controller('boards')
