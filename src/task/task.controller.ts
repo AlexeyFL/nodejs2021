@@ -5,52 +5,61 @@ import {
   Put,
   Delete,
   Param,
-  Res,
   Body,
-  UseGuards
+  UseGuards,
+  HttpCode,
+  HttpStatus,
+  HttpException,
+  UseFilters,
 } from '@nestjs/common';
-import {  Response } from 'express';
+import { CustomExceptionFilter } from '../exception-filter/exception.filter';
 import { CreateTaskDto } from '../dto/task.dto';
 import { TaskService } from './task.service';
 import { Task } from '../entity/Task';
-import {JwtAuthGuard} from '../auth/auth.guard'
+import { JwtAuthGuard } from '../auth/auth.guard';
 
 @Controller('boards/:boardId')
 @UseGuards(JwtAuthGuard)
+@UseFilters(new CustomExceptionFilter())
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
   @Get('/tasks')
-  async getUsers( @Res() res: Response) {
+  @HttpCode(200)
+  async getTasks() {
+    const tasks = await this.taskService.getTasks();
 
-    const users = await this.taskService.getTasks();
-
-    if (!users) {
-      res.status(404).send('Not found!');
+    if (!tasks) {
+      throw new HttpException('Not found!', HttpStatus.NOT_FOUND);
     }
-    res.status(200).json(users.map(Task.toResponse));
+    return tasks.map(Task.toResponse);
   }
 
   @Get('/tasks/:id')
-  async getOne(@Param('id') id: string, @Res() res: Response): Promise<void> {
+  @HttpCode(200)
+  async getOne(@Param('id') id: string): Promise<Task | undefined> {
     const task = await this.taskService.getTask(id);
     if (!task) {
-      res.status(404).send('Not found!');
+      throw new HttpException('Not found!', HttpStatus.NOT_FOUND);
     }
-    res.status(200).json(Task.toResponse(task));
+    return Task.toResponse(task);
   }
 
   @Post('/tasks')
+  @HttpCode(201)
   async createTask(
     @Param('boardId') boardId: string,
-    @Body() createTaskDto: CreateTaskDto,
-    @Res() res: Response
-  ): Promise<void> {
+    @Body() createTaskDto: CreateTaskDto
+  ): Promise<Task | undefined> {
     const response = await this.taskService.createTask(boardId, createTaskDto);
-    res.status(201).json(Task.toResponse(response));
+    if (!response) {
+      throw new HttpException('Not found!', HttpStatus.NOT_FOUND);
+    }
+    return Task.toResponse(response);
   }
 
   @Put('/tasks/:id')
+  @HttpCode(200)
   updateOne(
     @Body() updateTaskDto: CreateTaskDto,
     @Param('id') id: string | undefined
@@ -59,13 +68,14 @@ export class TaskController {
   }
 
   @Delete('/tasks/:id')
-  async deleteOne(@Param('id') id: string | number, @Res() res: Response) {
+  @HttpCode(200)
+  async deleteOne(@Param('id') id: string | number) {
     const deleted = await this.taskService.deleteTask(id);
 
     if (!deleted.affected) {
-      res.status(204);
+      throw new HttpException('No Content!', HttpStatus.NO_CONTENT);
     }
 
-    res.status(200).json(null);
+    return null;
   }
 }

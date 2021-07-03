@@ -5,55 +5,60 @@ import {
   Put,
   Delete,
   Param,
-  Res,
   Body,
   HttpException,
   HttpStatus,
-  UseGuards
+  UseGuards,
+  HttpCode,
+  UseFilters,
 } from '@nestjs/common';
-import {  Response } from 'express';
+import { CustomExceptionFilter } from '../exception-filter/exception.filter';
 import { CreateUserDto } from '../dto/user.dto';
 import { UserService } from './user.service';
 import { User } from '../entity/User';
-import {JwtAuthGuard} from '../auth/auth.guard'
+import { JwtAuthGuard } from '../auth/auth.guard';
 
 @Controller('users')
 @UseGuards(JwtAuthGuard)
+@UseFilters(new CustomExceptionFilter())
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
-  async getUsers( @Res() res: Response) {
-
+  @HttpCode(200)
+  async getUsers() {
     const users = await this.userService.getUsers();
 
     if (!users) {
-      // res.status(404).send('Not found!');
-      throw new HttpException("Not found!", HttpStatus.NOT_FOUND);
-      
+      throw new HttpException('Not found!', HttpStatus.NOT_FOUND);
     }
-    res.status(200).json(users.map(User.toResponse));
+    return users.map(User.toResponse);
   }
 
   @Get(':id')
-  async getOne(@Param('id') id: string, @Res() res: Response): Promise<void> {
+  @HttpCode(200)
+  async getOne(@Param('id') id: string): Promise<User | undefined> {
     const user = await this.userService.getUser(id);
     if (!user) {
-      throw new HttpException("Not found!", HttpStatus.NOT_FOUND);
+      throw new HttpException('Not found!', HttpStatus.NOT_FOUND);
     }
-    res.status(200).json(User.toResponse(user));
+    return User.toResponse(user);
   }
 
   @Post()
+  @HttpCode(201)
   async createUser(
-    @Body() createUserDto: CreateUserDto,
-    @Res() res: Response
-  ): Promise<void> {
+    @Body() createUserDto: CreateUserDto
+  ): Promise<User | undefined> {
     const response = await this.userService.createUser(createUserDto);
-    res.status(201).json(User.toResponse(response));
+    if (!response) {
+      throw new HttpException('Not found!', HttpStatus.NOT_FOUND);
+    }
+    return User.toResponse(response);
   }
 
   @Put(':id')
+  @HttpCode(200)
   updateOne(
     @Body() updateUserDto: CreateUserDto,
     @Param('id') id: string | undefined
@@ -62,13 +67,13 @@ export class UserController {
   }
 
   @Delete(':id')
-  async deleteOne(@Param('id') id: string | number, @Res() res: Response) {
+  @HttpCode(200)
+  async deleteOne(@Param('id') id: string | number) {
     const deleted = await this.userService.deleteUser(id);
 
     if (!deleted.affected) {
-      res.status(204);
+      throw new HttpException('No Content!', HttpStatus.NO_CONTENT);
     }
-
-    res.status(200).json(null);
+    return null;
   }
 }

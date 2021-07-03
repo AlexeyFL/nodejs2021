@@ -11,11 +11,11 @@ export class AuthController {
 
   @Post()
   async login(@Body() loginDto: User, @Res() res: Response) {
-    const accessToken = await this.authService.login(loginDto);
-    if (!accessToken) {
+    const token = await this.authService.login(loginDto);
+    if (!token) {
       res.status(401).json('No auth');
     }
-    res.status(200).json(accessToken);
+    res.status(200).json(token);
   }
 
   @UseGuards(JwtAuthGuard)
