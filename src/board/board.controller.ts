@@ -7,13 +7,16 @@ import {
   Param,
   Res,
   Body,
+  UseGuards
 } from '@nestjs/common';
 import { Response } from 'express';
 import { CreateBoardDto } from '../dto/board.dto';
 import { BoardService } from './board.service';
 import { Board } from '../entity/Board';
+import {JwtAuthGuard} from '../auth/auth.guard'
 
 @Controller('boards')
+@UseGuards(JwtAuthGuard)
 export class BoardController {
   constructor(private readonly boardService: BoardService) {}
 

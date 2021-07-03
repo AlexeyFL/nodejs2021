@@ -43,7 +43,6 @@ export class UserService {
   }
 
   async deleteUser(id: string | number) {
-
     await this.connection
       .getRepository(Task)
       .createQueryBuilder('task')
@@ -53,8 +52,15 @@ export class UserService {
       })
       .where('userId = :userId', { userId: id })
       .execute();
-   
 
     return this.repo.delete(id);
+  }
+
+  async findByLogin(login: string | undefined) {
+    return this.connection
+      .getRepository(User)
+      .createQueryBuilder('user')
+      .where('user.login = :login', { login })
+      .getOne();
   }
 }

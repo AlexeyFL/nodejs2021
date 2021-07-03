@@ -7,13 +7,18 @@ import {
   Param,
   Res,
   Body,
+  HttpException,
+  HttpStatus,
+  UseGuards
 } from '@nestjs/common';
 import {  Response } from 'express';
 import { CreateUserDto } from '../dto/user.dto';
 import { UserService } from './user.service';
 import { User } from '../entity/User';
+import {JwtAuthGuard} from '../auth/auth.guard'
 
 @Controller('users')
+@UseGuards(JwtAuthGuard)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -23,7 +28,9 @@ export class UserController {
     const users = await this.userService.getUsers();
 
     if (!users) {
-      res.status(404).send('Not found!');
+      // res.status(404).send('Not found!');
+      throw new HttpException("Not found!", HttpStatus.NOT_FOUND);
+      
     }
     res.status(200).json(users.map(User.toResponse));
   }
@@ -32,7 +39,7 @@ export class UserController {
   async getOne(@Param('id') id: string, @Res() res: Response): Promise<void> {
     const user = await this.userService.getUser(id);
     if (!user) {
-      res.status(404).send('Not found!');
+      throw new HttpException("Not found!", HttpStatus.NOT_FOUND);
     }
     res.status(200).json(User.toResponse(user));
   }
