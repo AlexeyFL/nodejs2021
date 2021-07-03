@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import {MigrationInterface, QueryRunner} from "typeorm";
 
 export class table1625334534607 implements MigrationInterface {
