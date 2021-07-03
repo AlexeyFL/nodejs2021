@@ -5,51 +5,60 @@ import {
   Put,
   Delete,
   Param,
-  Res,
   Body,
-  UseGuards
+  HttpCode,
+  UseFilters,
+  HttpException,
+  HttpStatus,
+  UseGuards,
 } from '@nestjs/common';
-import { Response } from 'express';
+import { CustomExceptionFilter } from '../exception-filter/exception.filter';
 import { CreateBoardDto } from '../dto/board.dto';
 import { BoardService } from './board.service';
 import { Board } from '../entity/Board';
-import {JwtAuthGuard} from '../auth/auth.guard'
+import { JwtAuthGuard } from '../auth/auth.guard';
 
 @Controller('boards')
 @UseGuards(JwtAuthGuard)
+@UseFilters(new CustomExceptionFilter())
 export class BoardController {
   constructor(private readonly boardService: BoardService) {}
 
   @Get()
-  async getBoards( @Res() res: Response) {
-
+  @HttpCode(200)
+  async getBoards() {
     const users = await this.boardService.getBoards();
 
     if (!users) {
-      res.status(404).send('Not found!');
+      throw new HttpException('Not found!', HttpStatus.NOT_FOUND);
     }
-    res.status(200).json(users.map(Board.toResponse));
+    return users.map(Board.toResponse);
   }
 
   @Get(':id')
-  async getOne(@Param('id') id: string, @Res() res: Response): Promise<void> {
+  @HttpCode(200)
+  async getOne(@Param('id') id: string): Promise<Board | undefined> {
     const board = await this.boardService.getBoard(id);
     if (!board) {
-      res.status(404).send('Not found!');
+      throw new HttpException('Not found!', HttpStatus.NOT_FOUND);
     }
-    res.status(200).json(Board.toResponse(board));
+    return Board.toResponse(board);
   }
 
   @Post()
+  @HttpCode(201)
   async createBoard(
-    @Body() createBoardDto: CreateBoardDto,
-    @Res() res: Response
-  ): Promise<void> {
+    @Body() createBoardDto: CreateBoardDto
+  ): Promise<Board | undefined> {
     const response = await this.boardService.createUser(createBoardDto);
-    res.status(201).json(Board.toResponse(response));
+    if (!response) {
+      throw new HttpException('Not found!', HttpStatus.NOT_FOUND);
+    }
+    return Board.toResponse(response);
   }
 
   @Put(':id')
+  @HttpCode(200)
   updateOne(
     @Body() updateBoardDto: CreateBoardDto,
     @Param('id') id: string | undefined
@@ -58,13 +67,14 @@ export class BoardController {
   }
 
   @Delete(':id')
-  async deleteOne(@Param('id') id: string | number, @Res() res: Response) {
+  @HttpCode(200)
+  async deleteOne(@Param('id') id: string | number) {
     const deleted = await this.boardService.deleteBoard(id);
 
     if (!deleted.affected) {
-      res.status(204);
+      throw new HttpException('No Content!', HttpStatus.NO_CONTENT);
     }
 
-    res.status(200).json(null);
+    return null;
   }
 }

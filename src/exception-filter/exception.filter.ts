@@ -14,7 +14,7 @@ export class CustomExceptionFilter implements ExceptionFilter {
       .json({
         statusCode: status,
         times: new Date().toLocaleString(),
-        pathUrl: request.url,
+        pathUrl: request.url
       });
   }
 }
