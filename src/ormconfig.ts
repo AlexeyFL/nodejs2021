@@ -9,7 +9,7 @@ export default {
   password: process.env['POSTGRES_PASSWORD'] || "12345",
   database: process.env['POSTGRES_DB'] || "postgres",
   synchronize: false,
-  migrationsRun: true,
+  // migrationsRun: true,
   logging: true,
   autoReconnect: true,
   reconnectTries: Number.MAX_VALUE,

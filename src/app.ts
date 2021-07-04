@@ -1,9 +1,13 @@
 import 'reflect-metadata';
 import express, { Application, Request, Response, NextFunction } from 'express';
+import { getConnection } from 'typeorm';
+
 // import cors from 'cors';
 import swaggerUI from 'swagger-ui-express';
 import * as path from 'path';
 import YAML from 'yamljs';
+import { checkToken } from './middlewares/checkToken';
+import { User } from './entity/User';
 import {
   morganHandler,
   Logger,
@@ -13,6 +17,7 @@ import {
 import userRouter from './resources/users/user.router';
 import boardRouter from './resources/boards/board.router';
 import taskRouter from './resources/tasks/tasks.router';
+import loginRouter from './resources/login/login.router';
 
 import { TryDBConnect } from './common/dbConnection';
 import { handleError } from './utils/index';
@@ -29,7 +34,19 @@ app.use(async (_req: Request, res: Response, next) => {
       error: 'Database connection error, please try again later',
     });
   }, next);
+
+  
+
+   
+      await getConnection()
+        .createQueryBuilder()
+        .insert()
+        .into(User)
+        .values([{ name: 'admin', login: 'admin', password: 'admin' }])
+        .execute();
+    
 });
+
 
 app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
@@ -46,6 +63,10 @@ app.use('/', (req: Request, res: Response, next: NextFunction) => {
 //  Promise.reject(Error('Oops'));
 // throw new Error('Ooops');
 
+app.use(checkToken);
+
+
+app.use('/login', loginRouter);
 app.use('/users', userRouter);
 app.use('/boards', boardRouter);
 boardRouter.use('/:boardId/tasks', taskRouter);
