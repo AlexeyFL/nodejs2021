@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';  
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { APP_INTERCEPTOR } from '@nestjs/core';
 import ConnectionOptions from './ormconfig';
-
+// import { getConnectionOptions } from 'typeorm';
+import { LoggingInterceptor } from './exception-filter/logging';
 
 import { UserModule } from './user/user.module';
 import { BoardModule } from './board/board.module';
@@ -15,13 +17,20 @@ import { AuthModule } from './auth/auth.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    TypeOrmModule.forRoot(ConnectionOptions),
+    TypeOrmModule.forRootAsync({
+      useFactory: () => (ConnectionOptions),
+    }),
+    // TypeOrmModule.forRoot(),
     UserModule,
     BoardModule,
     TaskModule,
-    AuthModule
-  ]
+    AuthModule,
+  ],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggingInterceptor,
+    },
+  ],
 })
-export class AppModule {
-  
-}
+export class AppModule {}

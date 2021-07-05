@@ -15,6 +15,7 @@ export default {
   username: POSTGRES_USER,
   password: POSTGRES_PASSWORD,
   database: POSTGRES_DB,
+  keepConnectionAlive: true,
   synchronize: false,
   migrationsRun: true,
   autoReconnect: true,

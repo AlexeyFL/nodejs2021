@@ -1,6 +1,14 @@
-import { Body, Controller, Get, Post, UseGuards, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  UseGuards,
+  HttpCode,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 
-import { Response } from 'express';
 import { AuthService } from './auth.service';
 import { User } from '../entity/User';
 import { JwtAuthGuard } from './auth.guard';
@@ -10,12 +18,13 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post()
-  async login(@Body() loginDto: User, @Res() res: Response) {
+  @HttpCode(200)
+  async login(@Body() loginDto: User) {
     const token = await this.authService.login(loginDto);
     if (!token) {
-      res.status(401).json('No auth');
+      throw new HttpException('Not authorized!', HttpStatus.UNAUTHORIZED);
     }
-    res.status(200).json(token);
+    return token;
   }
 
   @UseGuards(JwtAuthGuard)

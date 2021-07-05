@@ -17,7 +17,22 @@ async function bootstrap(useFasify: string | undefined) {
       new FastifyAdapter()
     );
 
-    await app.listen(PORT || 3000);
+    await app.listen(Number(PORT), '0.0.0.0');
+    const user = await getConnection()
+      .createQueryBuilder()
+      .select('user')
+      .from(User, 'user')
+      .where('user.login = :login', { login: 'admin' })
+      .getOne();
+
+    if (!user) {
+      await getConnection()
+        .createQueryBuilder()
+        .insert()
+        .into(User)
+        .values([{ name: 'admin', login: 'admin', password: 'admin' }])
+        .execute();
+    }
     console.log(`App listen on port ${PORT}`);
   }
 
@@ -40,6 +55,7 @@ async function bootstrap(useFasify: string | undefined) {
       .values([{ name: 'admin', login: 'admin', password: 'admin' }])
       .execute();
   }
+
   console.log(`App listen on port ${PORT}`);
 }
 bootstrap(USE_FASTIFY);
