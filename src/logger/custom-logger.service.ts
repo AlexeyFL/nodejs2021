@@ -10,7 +10,7 @@ export class CustomLogger implements LoggerService {
 
   constructor() {
     this.logger = winston.createLogger({
-      level: 'http',
+      level: 'info',
       format: winston.format.json(),
       defaultMeta: { service: 'user-service' },
       transports: [

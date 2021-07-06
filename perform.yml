@@ -1,0 +1,35 @@
+config:
+  target: "http://localhost:4000"
+  phases:
+    - duration: 3
+      arrivalRate: 5
+      name: Warm up
+    - duration: 5
+      arrivalRate: 15
+      rampTo: 50
+      name: Ramp up load
+    - duration: 10
+      arrivalRate: 20
+      name: Sustained load
+  defaults:
+    headers:
+      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxN2YzYThjLTgyNWItNGU3Yy05M2U5LTg1MTAzNTNiZjVmNCIsImxvZ2luIjoiYWRtaW4iLCJpYXQiOjE2MjUzMjI4MzR9.TxPkvF82YL2ukYn6mVxZz68KBAuxD18UZ2lHo3RJt_0"
+scenarios:
+  - name: "Users"
+    flow:
+      - get:
+          url: "/users"         
+          capture:
+            - json: "$.results[0].id"
+              as: "id"
+          expect: 
+            - statusCode: 200
+      - get:
+          url: "/users/{{ id }}"
+          capture:
+            - json: "$.results[0]"
+              as: "user"
+      - delete:
+          url: "/users/{{ id }}"
+      - put:
+          url: "/users/{{ id }}"
