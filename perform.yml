@@ -11,25 +11,49 @@ config:
     - duration: 10
       arrivalRate: 20
       name: Sustained load
-  defaults:
-    headers:
-      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxN2YzYThjLTgyNWItNGU3Yy05M2U5LTg1MTAzNTNiZjVmNCIsImxvZ2luIjoiYWRtaW4iLCJpYXQiOjE2MjUzMjI4MzR9.TxPkvF82YL2ukYn6mVxZz68KBAuxD18UZ2lHo3RJt_0"
+before:
+  flow:
+    - log: "Get auth token"
+    - post:
+        url: "/login"
+        json:
+          name: "admin"
+          login: "admin"
+          password: "admin"
+        capture:
+          - json: $.token
+            as: token
 scenarios:
   - name: "Users"
     flow:
       - get:
-          url: "/users"         
+          url: "/users"
+          headers:
+            authorization: "Bearer {{ token }}"
+      - post:
+          url: "/users"
+          headers:
+            authorization: "Bearer {{ token }}"
+          json:
+            name: "admin"
+            login: "admin"
+            password: "admin"
           capture:
-            - json: "$.results[0].id"
-              as: "id"
-          expect: 
-            - statusCode: 200
+          - json: "$.id"
+            as: "id"
       - get:
           url: "/users/{{ id }}"
-          capture:
-            - json: "$.results[0]"
-              as: "user"
+          headers:
+            authorization: "Bearer {{ token }}"
       - delete:
           url: "/users/{{ id }}"
+          headers:
+            authorization: "Bearer {{ token }}"
       - put:
           url: "/users/{{ id }}"
+          headers:
+            authorization: "Bearer {{ token }}"
+          json:
+            name: "test"
+            login: "test"
+            password: "test"
