@@ -8,6 +8,5 @@ RUN npm install
 
 COPY . .
 
-RUN npm install -g nodemon
 
-CMD nodemon src/server.ts
+CMD npm run start-nest:dev

@@ -55,10 +55,13 @@
     "no-param-reassign": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/naming-convention": "off",
     "import/no-cycle": "off",
     "prefer-destructuring": "off",
     "consistent-return": "off",
     "no-console": "off",
+    "class-methods-use-this": "off",
     "import/no-unresolved": "off",
     "import/prefer-default-export": "off"
   }
