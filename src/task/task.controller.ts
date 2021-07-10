@@ -1,4 +1,11 @@
 import {
+  ApiOkResponse,
+  ApiBearerAuth,
+  ApiUnauthorizedResponse,
+  // ApiBody,
+} from '@nestjs/swagger';
+
+import {
   Controller,
   Get,
   Post,
@@ -24,6 +31,9 @@ import { JwtAuthGuard } from '../auth/auth.guard';
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Get tasks' })
+  @ApiUnauthorizedResponse()
   @Get('/tasks')
   @HttpCode(200)
   async getTasks() {
@@ -35,6 +45,9 @@ export class TaskController {
     return tasks.map(Task.toResponse);
   }
 
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Get task' })
+  @ApiUnauthorizedResponse()
   @Get('/tasks/:id')
   @HttpCode(200)
   async getOne(@Param('id') id: string): Promise<Task | undefined> {
@@ -45,6 +58,9 @@ export class TaskController {
     return Task.toResponse(task);
   }
 
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Create task' })
+  @ApiUnauthorizedResponse()
   @Post('/tasks')
   @HttpCode(201)
   async createTask(
@@ -58,6 +74,9 @@ export class TaskController {
     return Task.toResponse(response);
   }
 
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Update task' })
+  @ApiUnauthorizedResponse()
   @Put('/tasks/:id')
   @HttpCode(200)
   updateOne(
@@ -67,6 +86,9 @@ export class TaskController {
     return this.taskService.updateTask(id, updateTaskDto);
   }
 
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Dalete task' })
+  @ApiUnauthorizedResponse()
   @Delete('/tasks/:id')
   @HttpCode(200)
   async deleteOne(@Param('id') id: string | number) {

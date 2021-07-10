@@ -1,4 +1,11 @@
 import {
+  ApiOkResponse,
+  ApiBearerAuth,
+  ApiUnauthorizedResponse,
+  // ApiBody,
+} from '@nestjs/swagger';
+
+import {
   Controller,
   Get,
   Post,
@@ -24,6 +31,9 @@ import { JwtAuthGuard } from '../auth/auth.guard';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Get users' })
+  @ApiUnauthorizedResponse()
   @Get()
   @HttpCode(200)
   async getUsers() {
@@ -35,6 +45,9 @@ export class UserController {
     return users.map(User.toResponse);
   }
 
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Get user by id' })
+  @ApiUnauthorizedResponse()
   @Get(':id')
   @HttpCode(200)
   async getOne(@Param('id') id: string): Promise<User | undefined> {
@@ -45,6 +58,9 @@ export class UserController {
     return User.toResponse(user);
   }
 
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Create user' })
+  @ApiUnauthorizedResponse()
   @Post()
   @HttpCode(201)
   async createUser(
@@ -57,6 +73,9 @@ export class UserController {
     return User.toResponse(response);
   }
 
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Update user' })
+  @ApiUnauthorizedResponse()
   @Put(':id')
   @HttpCode(200)
   updateOne(
@@ -66,6 +85,9 @@ export class UserController {
     return this.userService.updateUser(id, updateUserDto);
   }
 
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Delete users' })
+  @ApiUnauthorizedResponse()
   @Delete(':id')
   @HttpCode(200)
   async deleteOne(@Param('id') id: string | number) {

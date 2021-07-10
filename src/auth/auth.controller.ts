@@ -1,9 +1,9 @@
+import { ApiOkResponse, ApiBody } from '@nestjs/swagger';
+
 import {
   Body,
   Controller,
-  Get,
   Post,
-  UseGuards,
   HttpCode,
   HttpException,
   HttpStatus,
@@ -11,13 +11,15 @@ import {
 
 import { AuthService } from './auth.service';
 import { User } from '../entity/User';
-import { JwtAuthGuard } from './auth.guard';
+import { LoginDto } from '../dto/login.dto';
 
 @Controller('login')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post()
+  @ApiOkResponse({ description: 'User Login' })
+  @ApiBody({ type: LoginDto })
   @HttpCode(200)
   async login(@Body() loginDto: User) {
     const token = await this.authService.login(loginDto);
@@ -27,9 +29,4 @@ export class AuthController {
     return token;
   }
 
-  @UseGuards(JwtAuthGuard)
-  @Get()
-  async test() {
-    return 'Success!';
-  }
 }

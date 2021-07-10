@@ -31,11 +31,11 @@
 |                       |                  |                       |                                                                      |
 |-----------------------|------------------|-----------------------|----------------------------------------------------------------------|
 | Scenario counts:      | 380              | 100%                  |                                                                      |
-| Mean response/sec     | 92.95            |                       |                                                                      |
+| Mean response/sec     | 103.53           |                       |                                                                      |
 | Scenarios launched:   |  380             |                       |                                                                      |   
 | Scenarios completed:  |  380             |                       |                                                                      |   
 | Requests completed:   |  1900            |                       |                                                                      |   
-| Response time (msec)  |  min: 2          |median: 1502           |  max: 3689                                                           |   
-| p95:                  |   2962           |                       |                                                                      |
-| p99:                  | 3437.5           |                       |                                                                      |
+| Response time (msec)  |  min: 1          |median: 31             |  max: 828                                                            |    
+| p95:                  |   440            |                       |                                                                      |
+| p99:                  | 639.4            |                       |                                                                      |
 | Status Codes          |200:1520, 201:380 |                       |                                                                      |

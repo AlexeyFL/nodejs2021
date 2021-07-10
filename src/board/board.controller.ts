@@ -1,4 +1,11 @@
 import {
+  ApiOkResponse,
+  ApiBearerAuth,
+  ApiUnauthorizedResponse,
+  // ApiBody,
+} from '@nestjs/swagger';
+
+import {
   Controller,
   Get,
   Post,
@@ -24,6 +31,10 @@ import { JwtAuthGuard } from '../auth/auth.guard';
 export class BoardController {
   constructor(private readonly boardService: BoardService) {}
 
+
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Get boards' })
+  @ApiUnauthorizedResponse()
   @Get()
   @HttpCode(200)
   async getBoards() {
@@ -35,6 +46,9 @@ export class BoardController {
     return users.map(Board.toResponse);
   }
 
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Get board' })
+  @ApiUnauthorizedResponse()
   @Get(':id')
   @HttpCode(200)
   async getOne(@Param('id') id: string): Promise<Board | undefined> {
@@ -45,6 +59,9 @@ export class BoardController {
     return Board.toResponse(board);
   }
 
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Create board' })
+  @ApiUnauthorizedResponse()
   @Post()
   @HttpCode(201)
   async createBoard(
@@ -57,6 +74,9 @@ export class BoardController {
     return Board.toResponse(response);
   }
 
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Update board' })
+  @ApiUnauthorizedResponse()
   @Put(':id')
   @HttpCode(200)
   updateOne(
@@ -66,6 +86,9 @@ export class BoardController {
     return this.boardService.updateBoard(id, updateBoardDto);
   }
 
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Delete board' })
+  @ApiUnauthorizedResponse()
   @Delete(':id')
   @HttpCode(200)
   async deleteOne(@Param('id') id: string | number) {
